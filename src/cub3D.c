@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/20 11:51:22 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/05/20 13:11:55 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void	start_game(t_data *data)
 	data->pa = PI / 2;
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
 	t_data *data;
 
-	// if (argc != 2)
-	// 	verify_arg(argc);
+	if (argc != 2)
+		verify_arg(argc);
+	if (validate_cub(argv[1], ".cub") == 0)
+		error("map is not .cub", EXIT_FAILURE);
 	data = malloc (sizeof(t_data));
 	start_game(data);
 	make_image (data);

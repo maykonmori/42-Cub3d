@@ -13,7 +13,9 @@ SRC =	$(addprefix $(FOLDER), \
 		make_image.c \
 		commands.c \
 		my_img_pixel_put.c \
-		player.c)
+		player.c \
+		error.c \
+		verify_map.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 

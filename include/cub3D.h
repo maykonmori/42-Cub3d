@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/20 11:53:47 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/05/20 13:57:37 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <math.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
@@ -61,5 +63,7 @@ void	draw_player(t_data *data, int x, int y);
 void	my_img_pixel_put(t_data *data, int x, int y, int color);
 void	start_game(t_data *data);
 void	draw_line_from_player(t_data *data, double x, double y);
-
+int	    validate_cub(char *s, char *ext);
+void	error(char *s, int n);
+void	verify_arg(int argc);
 #endif
