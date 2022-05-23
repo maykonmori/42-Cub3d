@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/21 15:39:55 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/05/23 22:43:44 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,9 @@ void	error_wall(t_data *data);
 void	free_vector(t_data *data);
 char	*ft_strjoin_free(char *s1, char const *s2);
 void	validate_cep(int x, int y, t_data *data);
+char	*get_next_line(int fd);
+char	*ft_gnl_strjoin(char *s1, char *s2);
+int		check_pixel_color(t_data *data, int x, int y);
+
 
 #endif

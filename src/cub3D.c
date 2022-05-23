@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/21 15:43:08 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/05/23 22:48:27 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void	start_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 512, 512, "Cub3d");
+	data->win = mlx_new_window(data->mlx, data->map.count_column * 64, data->map.count_line * 64, "Cub3d");
 	data->px = 200;
 	data->py = 200;
+	data->move_up = 0;
+	data->move_down = 0;
+	data->move_left = 0;
+	data->move_right = 0;
 	data->pa = PI / 2;
 }
 
@@ -28,16 +32,11 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		verify_arg(argc);
 	data = malloc (sizeof(t_data));
-	start_game(data);
 	verify_map(argv, data);
+	start_game(data);
 	make_image (data);
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
 	mlx_loop_hook(data->mlx, ft_run, data);
 	mlx_loop(data->mlx);
 }
-
-
-
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/20 11:45:13 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:20:23 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	arrows_up(int keycode, t_data *data)
 
 int	ft_run(t_data *data)
 {
-	if (data->move_up == 1)
+	if (data->move_up == 1 && data->map.map[(data->py - 2) / 64][data->px / 64] != '1')
 		data->py -= 1;
-	if (data->move_down == 1)
+	if (data->move_down == 1 && data->map.map[(data->py + 2) / 64][data->px / 64] != '1')
 		data->py += 1;
-	if (data->move_right == 1)
+	if (data->move_right == 1 && data->map.map[(data->py) / 64][(data->px + 2) / 64] != '1')
 		data->px += 1;
-	if (data->move_left == 1)
+	if (data->move_left == 1 && data->map.map[(data->py) / 64][(data->px - 2) / 64] != '1')
 		data->px -= 1;
 	if (data->turn_left == 1)
 		data->pa += 0.015;
@@ -62,6 +62,7 @@ int	ft_run(t_data *data)
 		data->pa -= 0.015;
 	if (data->pa >= (PI * 2) || data->pa <= (PI * -2))
 		data->pa = 0;
+	mlx_destroy_image(data->mlx, data->img);
 	make_image(data);
 	return (0);
 }
