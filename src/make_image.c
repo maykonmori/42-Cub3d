@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/23 23:09:50 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/24 00:10:54 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	make_image(t_data *data)
 {
 	int		x;
 	int		y;
+	double	angle;
 
 	data->img = mlx_new_image(data->mlx, data->map.count_column * 64, data->map.count_line * 64);
 	data->img_addr = mlx_get_data_addr(data->img, &data->img_bits_per_pixel,
@@ -52,7 +53,14 @@ void	make_image(t_data *data)
 	}
 	
 	draw_player(data, data->px, data->py);
-	draw_line_from_player(data, data->px + roundf(100 * sin(data->pa)), data->py + roundf(100 * cos(data->pa)));
+	angle = data->pa;
+	data->pa -= PI / 6;
+	while (data->pa <= angle + PI / 6)
+	{
+		draw_line_from_player(data, data->px + roundf(100 * sin(data->pa)), data->py + roundf(100 * cos(data->pa)));
+		data->pa += 0.01;
+	}
+	data->pa = angle;
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
@@ -67,7 +75,7 @@ void	draw_line_from_player(t_data *data, double x, double y)
 	dy = abs((int)y - data->py);
 	ix = 0;
 	iy = 0;
-	while (abs((int)ix) < dx || abs((int)iy) < dy)
+	while (data->map.map[(data->py + (int)iy) / 64][(data->px + (int)ix) / 64] != '1')
 	{
 		if ((0.5 + abs((int)ix)) / dx < (0.5 + abs((int)iy)) / dy)
 		{
