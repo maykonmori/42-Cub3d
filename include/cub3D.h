@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/23 22:43:44 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/25 01:41:39 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_data
 	int		img_bits_per_pixel;
 	int		img_line_length;
 	int		img_endian;
-	int		px;
-	int		py;
+	double	px;
+	double	py;
 	float	pa;
 	int		move_up;
 	int		move_down;
@@ -57,6 +57,7 @@ typedef struct s_data
 	int		move_right;
 	int		turn_left;
 	int		turn_right;
+	int		ray_num;
 	float	x_min;
 	float	x_max;
 	float	y_min;

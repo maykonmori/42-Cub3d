@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/23 22:48:27 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:22:26 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 void	start_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, data->map.count_column * 64, data->map.count_line * 64, "Cub3d");
+	data->win = mlx_new_window(data->mlx, 1024, 1024, "Cub3d");
 	data->px = 200;
 	data->py = 200;
 	data->move_up = 0;
 	data->move_down = 0;
 	data->move_left = 0;
 	data->move_right = 0;
+	data->ray_num = 1;
 	data->pa = PI / 2;
 }
 
