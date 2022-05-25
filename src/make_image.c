@@ -15,17 +15,19 @@
 void	make_vertical_line(t_data *data, int distance, int color)
 {
 	int	lineH;
-	int	lineO;
 	int	x;
-	
-	lineH = (96 * 512) / distance;
+	int	lineO;
+	int	y_max;
+
+	lineH = (TILE_SIZE * 512) / distance;
 	if (lineH > 512)
 		lineH = 512;
-	lineO = 256 - (lineH / 2);
-	while (lineO <= lineH)
+	lineO = 256 - lineH / 2;
+	y_max = lineO + lineH;
+	while (lineO <= y_max)
 	{
 		x = (data->ray_num * 8) + 512;
-		while (x <= (data->ray_num * 8) + 522)
+		while (x < (data->ray_num * 8) + 520)
 			my_img_pixel_put(data, x++, lineO, color);
 		lineO++;
 	}
@@ -36,8 +38,8 @@ void	make_square(t_data *data, int x, int y, int color)
 	int	x_max;
 	int	y_max;
 
-	x_max = x + 64;
-	y_max = y + 64;
+	x_max = x + TILE_SIZE;
+	y_max = y + TILE_SIZE;
 	y -= 1;
 	while (++y <= y_max)
 	{
@@ -63,20 +65,20 @@ void	make_image(t_data *data)
 		while (data->map.map[y][++x])
 		{
 			if (data->map.map[y][x] == '1')
-				make_square(data, x * 64, y * 64, 0xFF0000);
+				make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0xFF0000);
 			else if (data->map.map[y][x] == '0')
-				make_square(data, x * 64, y * 64, 0x808080);
+				make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
 			else if (data->map.map[y][x] == 'N')
-				make_square(data, x * 64, y * 64, 0x808080);
+				make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
 		}
 	}
 	draw_player(data, round(data->px), round(data->py));
 	angle = data->pa;
-	data->pa += 0.558505;
-	while (data->ray_num < 64)
+	data->pa += 0.0174533 * 30;
+	while (data->ray_num < 60)
 	{
 		draw_line_from_player(data, round(data->px) + roundf(100 * cos(data->pa)), round(data->py) - roundf(100 * sin(data->pa)));
-		data->pa -= PI/180;
+		data->pa -= 0.0174533;
 		data->ray_num++;
 	}
 	data->ray_num = 0;
@@ -97,7 +99,7 @@ void	draw_line_from_player(t_data *data, double x, double y)
 	dy = abs((int)y - (int)round(data->py));
 	ix = 0;
 	iy = 0;
-	while (data->map.map[((int)round(data->py) + (int)iy) / 64][((int)round(data->px) + (int)ix) / 64] != '1')
+	while (data->map.map[((int)round(data->py) + (int)iy) / TILE_SIZE][((int)round(data->px) + (int)ix) / TILE_SIZE] != '1')
 	{
 		if ((0.5 + abs((int)ix)) / dx < (0.5 + abs((int)iy)) / dy)
 		{

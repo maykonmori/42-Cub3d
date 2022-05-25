@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <mlx.h>
 # include <stdlib.h>
@@ -26,6 +26,7 @@
 # define KEYPRESSMASK 1
 # define KEYRELEASEMASK 10
 # define PI 3.1415926535
+# define TILE_SIZE 64
 
 typedef struct s_map
 {
