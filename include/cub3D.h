@@ -52,6 +52,7 @@ typedef struct s_data
 	double	px;
 	double	py;
 	float	pa;
+	float	ra;
 	int		move_up;
 	int		move_down;
 	int		move_left;
