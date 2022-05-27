@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/27 03:17:54 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:24:30 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	arrows_up(int keycode, t_data *data)
 		data->turn_left = 0;
 	if (keycode == 65363)
 		data->turn_right = 0;
+	if (keycode == 65307)
+		exit_click();
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/24 16:22:26 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:17:17 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int main(int argc, char **argv)
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
 	mlx_loop_hook(data->mlx, ft_run, data);
+	mlx_hook(data->win, 17, 0L, exit_click, &data);
 	mlx_loop(data->mlx);
 }

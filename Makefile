@@ -9,6 +9,7 @@ FOLDER = ./src/
 FOLDER_OBJS = ./objs/
 
 SRC =	$(addprefix $(FOLDER), \
+		exit.c \
 		cub3D.c \
 		make_image.c \
 		commands.c \
