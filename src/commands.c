@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/25 01:45:51 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/27 03:17:54 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	ft_run(t_data *data)
 		data->py -= 2 * cos(data->pa);
 	}
 	if (data->turn_left == 1)
-		data->pa += 0.02;
+		data->pa += PI / 180;
 	if (data->turn_right == 1)
-		data->pa -= 0.02;
+		data->pa -= PI / 180;
 	if (data->pa >= (PI * 2) || data->pa <= (PI * -2))
 		data->pa = 0;
 	make_image(data);

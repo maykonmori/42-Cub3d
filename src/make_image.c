@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/25 01:57:56 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/27 03:27:47 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	make_image(t_data *data)
 		}
 	}
 	draw_player(data, round(data->px), round(data->py));
-	data->ra = data->pa + (0.0174533 * 30);
+	data->ra = data->pa + (PI / 180 * 32);
 	while (data->ray_num < 64)
 	{
-		draw_line_from_player(data, round(data->px) + roundf(100 * cos(data->ra)), round(data->py) - roundf(100 * sin(data->ra)));
-		data->ra -= 0.0174533;
+		draw_line_from_player(data, cos(data->ra), sin(data->ra));
+		data->ra -= PI / 180;
 		data->ray_num++;
 	}
 	data->ray_num = 0;
@@ -84,48 +84,29 @@ void	make_image(t_data *data)
 	mlx_destroy_image(data->mlx, data->img);
 }
 
-void	draw_line_from_player(t_data *data, double x, double y)
+void	draw_line_from_player(t_data *data, double x_angle, double y_angle)
 {
-	double	ix;
-	double	iy;
-	double	dx;
-	double	dy;
-	int		axis;
-	float	ca;
+	double		ix;
+	double		iy;
+	float		ca;
 	float		dist;
 
-	dx = abs((int)x - (int)round(data->px));
-	dy = abs((int)y - (int)round(data->py));
 	ix = 0;
 	iy = 0;
-	while (data->map.map[((int)round(data->py) + (int)iy) / TILE_SIZE][((int)round(data->px) + (int)ix) / TILE_SIZE] != '1')
+	while (data->map.map[(int)round(data->py + iy) / TILE_SIZE][(int)round(data->px + ix) / TILE_SIZE] != '1')
 	{
-		if ((0.5 + abs((int)ix)) / dx < (0.5 + abs((int)iy)) / dy)
-		{
-			if (round(data->px) < x)
-				ix++;
-			else
-				ix--;
-			axis = 'x';
-		}
-		else
-		{
-			if (round(data->py) < y)
-				iy++;
-			else
-				iy--;
-			axis = 'y';
-		}
-		my_img_pixel_put(data, round(data->px) + (int)ix, round(data->py) + (int)iy, 0xFFFF00);
+		ix += x_angle;
+		iy -= y_angle;
+		my_img_pixel_put(data, round(data->px + ix), round(data->py + iy), 0xFFFF00);
 	}
 	ca = data->pa - data->ra;
-	if (ca < 0)
+	if (ca < 2 * PI)
 		ca += 2 * PI;
 	if (ca > 2 * PI)
 		ca -= 2 * PI;
 	dist = sqrt((iy * iy) + (ix * ix)) * cos(ca);
-	if (axis == 'x')
-		make_vertical_line(data, round(dist), 0x0000FF);
+	if (data->map.map[(int)round(data->py + iy) / TILE_SIZE][(int)round(data->px + ix - x_angle) / TILE_SIZE] != '1')
+		make_vertical_line(data, round(dist), 0xFF0000);
 	else
-		make_vertical_line(data, round(dist), 0x0000D1);
+		make_vertical_line(data, round(dist), 0xCC0000);
 }
