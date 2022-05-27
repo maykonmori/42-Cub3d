@@ -17,7 +17,8 @@ SRC =	$(addprefix $(FOLDER), \
 		error.c \
 		verify_map.c \
 		get_next_line.c \
-		get_next_line_utils.c)
+		get_next_line_utils.c \
+		exit.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 

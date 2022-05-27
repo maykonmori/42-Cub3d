@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/25 01:41:39 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/05/28 01:36:38 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	make_image(t_data *data);
 void	draw_player(t_data *data, int x, int y);
 void	my_img_pixel_put(t_data *data, int x, int y, int color);
 void	start_game(t_data *data);
-void	draw_line_from_player(t_data *data, double x, double y);
+void	raycast(t_data *data, double x, double y);
 int	    validate_cub(char *s, char *ext);
 void	error(char *s, int n);
 void	verify_arg(int argc);
@@ -91,7 +91,6 @@ char	*ft_strjoin_free(char *s1, char const *s2);
 void	validate_cep(int x, int y, t_data *data);
 char	*get_next_line(int fd);
 char	*ft_gnl_strjoin(char *s1, char *s2);
-int		check_pixel_color(t_data *data, int x, int y);
-
+int		exit_click(void);
 
 #endif

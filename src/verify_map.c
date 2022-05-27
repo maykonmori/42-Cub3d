@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/21 15:43:08 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/05/27 03:39:05 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,19 @@ int	validate_cub(char *s, char *ext)
 
 void	validate_cep(int x, int y, t_data *data)
 {
-	if (data->map.map[y][x] == 'N')
+	if (ft_strchr("NESW", data->map.map[y][x]))
 	{
 		data->map.cont_player++;
-		data->py = y * 64;
-		data->px = x * 64;
+		data->py = (y * 64) + 32;
+		data->px = (x * 64) + 32;
+		if (data->map.map[y][x] == 'N')
+			data->pa = PI / 2;
+		if (data->map.map[y][x] == 'E')
+			data->pa = PI;
+		if (data->map.map[y][x] == 'S')
+			data->pa = (3 * PI) / 2;
+		if (data->map.map[y][x] == 'W')
+			data->pa = 0;
 	}
 }
 
