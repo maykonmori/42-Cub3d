@@ -6,9 +6,10 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/28 01:36:38 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/01 06:14:42 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -38,17 +39,23 @@ typedef struct s_map
 	int			cont_player;
 }	t_map;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*img_addr;
+	int		img_bits_per_pixel;
+	int		img_line_length;
+	int		img_endian;
+}	t_img;
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
-	char	*img_addr;
+	t_img	*game_img;
+	t_img	*tex_img;
 	int		fractal;
 	int		color;
-	int		img_bits_per_pixel;
-	int		img_line_length;
-	int		img_endian;
 	double	px;
 	double	py;
 	float	pa;
@@ -75,7 +82,7 @@ int		arrows_up(int keycode, t_data *data);
 int		arrows_down(int keycode, t_data *data);
 void	make_image(t_data *data);
 void	draw_player(t_data *data, int x, int y);
-void	my_img_pixel_put(t_data *data, int x, int y, int color);
+void	my_img_pixel_put(t_img	*img, int x, int y, int color);
 void	start_game(t_data *data);
 void	raycast(t_data *data, double x, double y);
 int	    validate_cub(char *s, char *ext);
@@ -91,6 +98,8 @@ char	*ft_strjoin_free(char *s1, char const *s2);
 void	validate_cep(int x, int y, t_data *data);
 char	*get_next_line(int fd);
 char	*ft_gnl_strjoin(char *s1, char *s2);
+int		check_pixel_color(t_data *data, int x, int y);
 int		exit_click(void);
+int		my_img_pixel_get(t_img *img, int x, int y);
 
 #endif

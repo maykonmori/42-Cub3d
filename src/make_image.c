@@ -6,45 +6,59 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/28 01:36:29 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/01 23:26:21 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	make_vertical_line(t_data *data, int distance, int color)
+void	make_vertical_line(t_data *data, int distance, double ix)
 {
 	int	lineH;
 	int	x;
 	int	lineO;
 	int	y_max;
 	int	y_ceil;
+	float	ty;
+	float	ty_step;
+	float	ty_off;
+	float	tx;
 
 	y_ceil = 0;
 	lineH = (TILE_SIZE * 512) / distance;
+	ty_step = 64.0 / (float)lineH;
+	ty_off = 0;
 	if (lineH > 512)
+	{
+		ty_off = (lineH - 512) / 2.0;
 		lineH = 512;
+	}
 	lineO = 256 - lineH / 2;
 	y_max = lineO + lineH;
+	tx = (int)(ix / 2.0) % 32;
+	if (data->ra > PI)
+		tx = 31 - tx;
+	ty = ty_off * ty_step;
 	while (y_ceil <= lineO)
 	{
 		x = (data->ray_num * 8) + 512;
 		while (x < (data->ray_num * 8) + 520)
-			my_img_pixel_put(data, x++, y_ceil, 0xADD8E6);
+			my_img_pixel_put(data->game_img, x++, y_ceil, 0xADD8E6);
 		y_ceil++;
 	}
 	while (lineO <= y_max)
 	{
 		x = (data->ray_num * 8) + 512;
 		while (x < (data->ray_num * 8) + 520)
-			my_img_pixel_put(data, x++, lineO, color);
+			my_img_pixel_put(data->game_img, x++, lineO, my_img_pixel_get(data->tex_img, (int)tx, (int)ty));
 		lineO++;
+		ty += ty_step;
 	}
 	while (y_max <= 512)
 	{
 		x = (data->ray_num * 8) + 512;
 		while (x < (data->ray_num * 8) + 520)
-			my_img_pixel_put(data, x++, y_max, 0x808080);
+			my_img_pixel_put(data->game_img, x++, y_max, 0x808080);
 		y_max++;
 	}
 }
@@ -61,7 +75,7 @@ void	make_square(t_data *data, int x, int y, int color)
 	{
 		x = x_max - 65;
 		while (++x <= x_max)
-			my_img_pixel_put(data, x, y, color);
+			my_img_pixel_put(data->game_img, x, y, color);
 	}
 }
 
@@ -70,9 +84,10 @@ void	make_image(t_data *data)
 	int		x;
 	int		y;
 
-	data->img = mlx_new_image(data->mlx, 1024, 1024);
-	data->img_addr = mlx_get_data_addr(data->img, &data->img_bits_per_pixel,
-			&data->img_line_length, &data->img_endian);
+	data->game_img = malloc (sizeof(t_img));
+	data->game_img->img = mlx_new_image(data->mlx, 1024, 1024);
+	data->game_img->img_addr = mlx_get_data_addr(data->game_img->img, &data->game_img->img_bits_per_pixel,
+			&data->game_img->img_line_length, &data->game_img->img_endian);
 	y = -1;
 	while (data->map.map[++y])
 	{
@@ -96,8 +111,8 @@ void	make_image(t_data *data)
 		data->ray_num++;
 	}
 	data->ray_num = 0;
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	mlx_destroy_image(data->mlx, data->img);
+	mlx_put_image_to_window(data->mlx, data->win, data->game_img->img, 0, 0);
+	mlx_destroy_image(data->mlx, data->game_img->img);
 }
 
 void	raycast(t_data *data, double x_angle, double y_angle)
@@ -113,12 +128,12 @@ void	raycast(t_data *data, double x_angle, double y_angle)
 	{
 		ix += x_angle / 10;
 		iy -= y_angle / 10;
-		my_img_pixel_put(data, floor(data->px + ix), floor(data->py + iy), 0xFFFF00);
+		my_img_pixel_put(data->game_img, floor(data->px + ix), floor(data->py + iy), 0xFFFF00);
 	}
 	ca = data->pa - data->ra;
 	dist = sqrt((iy * iy) + (ix * ix)) * cos(ca);
 	if (data->map.map[(int)floor(data->py + iy) / TILE_SIZE][(int)floor(data->px + ix - x_angle) / TILE_SIZE] != '1')
-		make_vertical_line(data, round(dist), 0xFF0000);
+		make_vertical_line(data, round(dist), data->py + iy);
 	else
-		make_vertical_line(data, round(dist), 0xCC0000);
+		make_vertical_line(data, round(dist), data->px + ix);
 }

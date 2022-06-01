@@ -9,6 +9,7 @@ FOLDER = ./src/
 FOLDER_OBJS = ./objs/
 
 SRC =	$(addprefix $(FOLDER), \
+		exit.c \
 		cub3D.c \
 		make_image.c \
 		commands.c \
@@ -17,8 +18,7 @@ SRC =	$(addprefix $(FOLDER), \
 		error.c \
 		verify_map.c \
 		get_next_line.c \
-		get_next_line_utils.c \
-		exit.c)
+		get_next_line_utils.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 
