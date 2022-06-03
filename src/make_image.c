@@ -6,13 +6,13 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/01 23:26:21 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/03 03:59:33 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	make_vertical_line(t_data *data, int distance, double ix)
+void	make_vertical_line(t_data *data, int distance, double ix, t_img *img)
 {
 	int	lineH;
 	int	x;
@@ -25,6 +25,8 @@ void	make_vertical_line(t_data *data, int distance, double ix)
 	float	tx;
 
 	y_ceil = 0;
+	if (distance == 0)
+		distance = 1;
 	lineH = (TILE_SIZE * 512) / distance;
 	ty_step = 64.0 / (float)lineH;
 	ty_off = 0;
@@ -50,7 +52,7 @@ void	make_vertical_line(t_data *data, int distance, double ix)
 	{
 		x = (data->ray_num * 8) + 512;
 		while (x < (data->ray_num * 8) + 520)
-			my_img_pixel_put(data->game_img, x++, lineO, my_img_pixel_get(data->tex_img, (int)tx, (int)ty));
+			my_img_pixel_put(data->game_img, x++, lineO, my_img_pixel_get(img, (int)tx, (int)ty));
 		lineO++;
 		ty += ty_step;
 	}
@@ -132,8 +134,12 @@ void	raycast(t_data *data, double x_angle, double y_angle)
 	}
 	ca = data->pa - data->ra;
 	dist = sqrt((iy * iy) + (ix * ix)) * cos(ca);
-	if (data->map.map[(int)floor(data->py + iy) / TILE_SIZE][(int)floor(data->px + ix - x_angle) / TILE_SIZE] != '1')
-		make_vertical_line(data, round(dist), data->py + iy);
+	if (data->map.map[(int)floor(data->py + iy) / TILE_SIZE][(int)floor(data->px + ix - x_angle) / TILE_SIZE] != '1' && x_angle >= 0)
+		make_vertical_line(data, round(dist), data->py + iy, data->e_img);
+	else if ((data->map.map[(int)floor(data->py + iy) / TILE_SIZE][(int)floor(data->px + ix - x_angle) / TILE_SIZE] != '1' && x_angle < 0))
+		make_vertical_line(data, round(dist), data->py + iy, data->w_img);
+	else if (y_angle >= 0)
+		make_vertical_line(data, round(dist), data->px + ix, data->n_img);
 	else
-		make_vertical_line(data, round(dist), data->px + ix);
+		make_vertical_line(data, round(dist), data->px + ix, data->s_img);
 }

@@ -6,24 +6,33 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/01 06:11:46 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/03 02:54:03 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub3D.h"
 
+t_img	*init_texture(t_data *data, char *file)
+{
+	int		trash;
+	t_img	*ret;
+
+	ret = malloc (sizeof(t_img));
+	ret->img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);
+	ret->img_addr = mlx_get_data_addr(ret->img, &ret->img_bits_per_pixel,
+			&ret->img_line_length, &ret->img_endian);
+	return (ret);
+}
+
 void	start_game(t_data *data)
 {
-	int	trash;
-
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 1024, 1024, "Cub3d");
-	data->tex_img = malloc(sizeof(t_img));
-	data->tex_img->img = mlx_xpm_file_to_image(data->mlx, "./img/bricks.xpm", \
-		&trash, &trash);
-	data->tex_img->img_addr = mlx_get_data_addr(data->tex_img->img, &data->tex_img->img_bits_per_pixel,
-			&data->tex_img->img_line_length, &data->tex_img->img_endian);
+	data->n_img = init_texture(data, "./img/bricks.xpm");
+	data->s_img = init_texture(data, "./img/bricks2.xpm");
+	data->w_img = init_texture(data, "./img/bookshelf.xpm");
+	data->e_img = init_texture(data, "./img/dirt.xpm");
 	data->move_up = 0;
 	data->move_down = 0;
 	data->move_left = 0;

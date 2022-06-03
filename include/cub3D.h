@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/01 21:22:49 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/03 02:43:24 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	t_img	*game_img;
-	t_img	*tex_img;
+	t_img	*n_img;
+	t_img	*s_img;
+	t_img	*w_img;
+	t_img	*e_img;
 	int		fractal;
 	int		color;
 	double	px;

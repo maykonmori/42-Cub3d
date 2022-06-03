@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/01 19:24:01 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/03 04:00:44 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,31 @@ int	arrows_up(int keycode, t_data *data)
 
 int	ft_run(t_data *data)
 {
-	if (data->move_up == 1 && data->map.map[((int)round(data->py - 6 * sin(data->pa))) / 64][(int)round(data->px + 6 * cos(data->pa)) / 64] != '1')
+	int	x_check;
+	int	y_check;
+
+	x_check = 1;
+	y_check = 1;
+	if (cos(data->pa) < 0)
+		x_check = -1;
+	if (sin(data->pa) < 0)
+		y_check = -1;
+	if (data->move_up == 1 && data->map.map[((int)round(data->py - (y_check * 10))) / 64][((int)round(data->px + (x_check * 10)) / 64)] != '1')
 	{
 		data->px += 3 * cos(data->pa);
 		data->py -= 3 * sin(data->pa);
 	}
-	if (data->move_down == 1 && data->map.map[((int)round(data->py + 6 * sin(data->pa))) / 64][(int)round(data->px - 6 * cos(data->pa)) / 64] != '1')
+	if (data->move_down == 1 && data->map.map[((int)round(data->py + (y_check * 10))) / 64][((int)round(data->px - (x_check * 10)) / 64)] != '1')
 	{
 		data->px -= 3 * cos(data->pa);
 		data->py += 3 * sin(data->pa);
 	}
-	if (data->move_right == 1 && data->map.map[((int)round(data->py + 6 * cos(data->pa))) / 64][(int)round(data->px + 6 * sin(data->pa)) / 64] != '1')
+	if (data->move_right == 1 && data->map.map[((int)round(data->py + (x_check * 10))) / 64][((int)round(data->px + (y_check * 10)) / 64)] != '1')
 	{
 		data->px += 3 * sin(data->pa);
 		data->py += 3 * cos(data->pa);
 	}
-	if (data->move_left == 1 && data->map.map[((int)round(data->py - 6 * cos(data->pa))) / 64][(int)round(data->px - 6 * sin(data->pa)) / 64] != '1')
+	if (data->move_left == 1 && data->map.map[((int)round(data->py - (x_check * 10))) / 64][((int)round(data->px - (y_check * 10)) / 64)] != '1')
 	{
 		data->px -= 3 * sin(data->pa);
 		data->py -= 3 * cos(data->pa);
