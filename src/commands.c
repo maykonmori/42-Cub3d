@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/03 04:00:44 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/03 04:09:40 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ int	ft_run(t_data *data)
 		data->pa += PI / 180 * 2;
 	if (data->turn_right == 1)
 		data->pa -= PI / 180 * 2;
-	if (data->pa >= (PI * 2) || data->pa <= (PI * -2))
-		data->pa = 0;
+	if (data->pa > 2 * PI)
+		data->pa -= 2 * PI;
+	if (data->pa < 0)
+		data->pa += 2 * PI;
 	make_image(data);
 	return (0);
 }
