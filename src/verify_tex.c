@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   verify_tex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/07 03:14:35 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:39:45 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	add_tex_location(char *line, char *tex)
+char	*add_tex_location(char *line, char *tex)
 {
 	char	*ret;
-	
+
 	if (tex != NULL)
 		exit(1);
 	ret = line + 3;
 	while (*ret == ' ')
-		*ret++;
+		ret++;
 	return (ret);
 }
 
@@ -47,18 +47,18 @@ int	get_rgb(t_data *data, char *line, int color)
 	int		r;
 	int		g;
 	int		b;
-	
+
 	if (color != 0)
 		exit (1);
 	while (*line == ' ')
-		*line++;
+		line++;
 	split = ft_split(line, ',');
 	r = check_colors(data, split[0]);
 	g = check_colors(data, split[1]);
 	b = check_colors(data, split[2]);
 	if (split[3] != NULL)
 		exit (1);
-	return ((r * 65536) + (g * 256) + b)
+	return ((r * 65536) + (g * 256) + b);
 }
 
 void	check_line(t_data *data, char *line)

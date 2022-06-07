@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/07 03:18:55 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:37:24 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ void	count_column(t_data *data)
 	free(data->map.temp);
 }
 
-void	get_map(t_data *data)
-{
-	
-}
+// void	get_map(t_data *data)
+// {
+
+// }
 
 void	verify_map(char **argv, t_data *data)
 {
@@ -129,8 +129,8 @@ void	verify_map(char **argv, t_data *data)
 		free(data->map.line);
 		data->map.count_line++;
 	}
-	get_map(data);
-	count_column(data);
+	// get_map(data);
+	// count_column(data);
 	validate_map(data);
 	close(fd);
 }

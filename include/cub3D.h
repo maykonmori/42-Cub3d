@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/07 02:35:25 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:39:55 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,9 @@ void	validate_cep(int x, int y, t_data *data);
 int		check_pixel_color(t_data *data, int x, int y);
 int		exit_click(void);
 int		my_img_pixel_get(t_img *img, int x, int y);
+char	*add_tex_location(char *line, char *tex);
+void	check_line(t_data *data, char *line);
+int		get_rgb(t_data *data, char *line, int color);
+int		check_colors(t_data *data, char *line);
 
 #endif
