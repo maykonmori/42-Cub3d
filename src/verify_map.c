@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/06 20:20:42 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/07 03:18:55 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ void	count_column(t_data *data)
 	free(data->map.temp);
 }
 
+void	get_map(t_data *data)
+{
+	
+}
+
 void	verify_map(char **argv, t_data *data)
 {
 	int	fd;
@@ -119,38 +124,13 @@ void	verify_map(char **argv, t_data *data)
 		data->map.line = get_next_line(fd);
 		if (data->map.line == NULL)
 			break ;
+		check_line(data, data->map.line);
 		data->map.temp = ft_strjoin_free(data->map.temp, data->map.line);
 		free(data->map.line);
 		data->map.count_line++;
 	}
+	get_map(data);
 	count_column(data);
 	validate_map(data);
 	close(fd);
-}
-
-char	*ft_strjoin_free(char *s1, char const *s2)
-{
-	char	*nstring;
-	size_t	i;
-	size_t	a;
-
-	nstring = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	i = 0;
-	a = 0;
-	if (nstring == 0)
-		return (0);
-	while (s1[i] != '\0')
-	{
-		nstring[i] = s1[i];
-		i++;
-	}
-	while (s2[a] != '\0')
-	{
-		nstring[i + a] = s2[a];
-		a++;
-	}
-	nstring[i + a] = '\0';
-	free(s1);
-	s1 = NULL;
-	return (nstring);
 }

@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/03 02:43:24 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/07 02:35:25 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ typedef struct s_data
 	t_img	*s_img;
 	t_img	*w_img;
 	t_img	*e_img;
+	char	*s_tex;
+	char	*n_tex;
+	char	*w_tex;
+	char	*e_tex;
+	int		c_color;
+	int		f_color;
 	int		fractal;
 	int		color;
 	double	px;

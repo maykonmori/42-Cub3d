@@ -16,7 +16,9 @@ SRC =	$(addprefix $(FOLDER), \
 		my_img_pixel_put.c \
 		player.c \
 		error.c \
-		verify_map.c)
+		verify_map.c \
+		verify_tex.c \
+		utils.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 
