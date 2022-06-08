@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/06 20:31:27 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/08 03:23:59 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_img	*init_texture(t_data *data, char *file)
 void	start_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 1024, 1024, "Cub3d");
-	data->n_img = init_texture(data, "./assets/img/bricks.xpm");
-	data->s_img = init_texture(data, "./assets/img/bricks2.xpm");
-	data->w_img = init_texture(data, "./assets/img/bookshelf.xpm");
-	data->e_img = init_texture(data, "./assets/img/dirt.xpm");
+	data->win = mlx_new_window(data->mlx, 512, 512, "Cub3d");
+	data->n_img = init_texture(data, data->n_tex);
+	data->s_img = init_texture(data, data->s_tex);
+	data->w_img = init_texture(data, data->w_tex);
+	data->e_img = init_texture(data, data->e_tex);
 	data->move_up = 0;
 	data->move_down = 0;
 	data->move_left = 0;

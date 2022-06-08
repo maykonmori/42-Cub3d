@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:47 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/07 13:40:15 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/08 03:21:01 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,20 @@ char	*ft_strjoin_free(char *s1, char const *s2)
 	free(s1);
 	s1 = NULL;
 	return (nstring);
+}
+
+int	check_map_chars(char *line)
+{
+	int		n;
+
+	n = 0;
+	if (line[0] == '\n')
+		return (0);
+	while (line[n] != '\0')
+	{
+		if (!(ft_strchr("01NESW ", line[n])) && line[n] != '\n')
+			return (0);
+		n++;
+	}
+	return (1);
 }

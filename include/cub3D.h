@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/07 13:39:55 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/08 02:37:32 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_map
 	int			count_column;
 	int			count_line;
 	int			cont_player;
+	int			map_start;
 }	t_map;
 
 typedef struct s_img
@@ -112,5 +113,7 @@ char	*add_tex_location(char *line, char *tex);
 void	check_line(t_data *data, char *line);
 int		get_rgb(t_data *data, char *line, int color);
 int		check_colors(t_data *data, char *line);
+void	get_map(t_data *data);
+int		check_map_chars(char *line);
 
 #endif

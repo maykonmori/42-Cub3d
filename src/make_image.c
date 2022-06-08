@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/05 00:43:15 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/08 03:39:00 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,24 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img *img)
 	ty = ty_off * ty_step;
 	while (y_ceil <= lineO)
 	{
-		x = (data->ray_num * 8) + 512;
-		while (x < (data->ray_num * 8) + 520)
-			my_img_pixel_put(data->game_img, x++, y_ceil, 0xADD8E6);
+		x = (data->ray_num * 8);
+		while (x < (data->ray_num * 8) + 8)
+			my_img_pixel_put(data->game_img, x++, y_ceil, data->c_color);
 		y_ceil++;
 	}
 	while (lineO <= y_max)
 	{
-		x = (data->ray_num * 8) + 512;
-		while (x < (data->ray_num * 8) + 520)
+		x = (data->ray_num * 8);
+		while (x < (data->ray_num * 8) + 8)
 			my_img_pixel_put(data->game_img, x++, lineO, my_img_pixel_get(img, (int)tx, (int)ty));
 		lineO++;
 		ty += ty_step;
 	}
 	while (y_max <= 512)
 	{
-		x = (data->ray_num * 8) + 512;
-		while (x < (data->ray_num * 8) + 520)
-			my_img_pixel_put(data->game_img, x++, y_max, 0x808080);
+		x = (data->ray_num * 8);
+		while (x < (data->ray_num * 8) + 8)
+			my_img_pixel_put(data->game_img, x++, y_max, data->f_color);
 		y_max++;
 	}
 }
@@ -83,28 +83,28 @@ void	make_square(t_data *data, int x, int y, int color)
 
 void	make_image(t_data *data)
 {
-	int		x;
-	int		y;
+	// int		x;
+	// int		y;
 
 	data->game_img = malloc (sizeof(t_img));
-	data->game_img->img = mlx_new_image(data->mlx, 1024, 1024);
+	data->game_img->img = mlx_new_image(data->mlx, 512, 512);
 	data->game_img->img_addr = mlx_get_data_addr(data->game_img->img, &data->game_img->img_bits_per_pixel,
 			&data->game_img->img_line_length, &data->game_img->img_endian);
-	y = -1;
-	while (data->map.map[++y])
-	{
-		x = -1;
-		while (data->map.map[y][++x])
-		{
-			if (data->map.map[y][x] == '1')
-				make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0xFF0000);
-			else if (data->map.map[y][x] == '0')
-				make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
-			else if (ft_strchr("NEWS", data->map.map[y][x]))
-				make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
-		}
-	}
-	draw_player(data, round(data->px), round(data->py));
+	// y = -1;
+	// while (data->map.map[++y])
+	// {
+	// 	x = -1;
+	// 	while (data->map.map[y][++x])
+	// 	{
+	// 		if (data->map.map[y][x] == '1')
+	// 			make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0xFF0000);
+	// 		else if (data->map.map[y][x] == '0')
+	// 			make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
+	// 		else if (ft_strchr("NEWS", data->map.map[y][x]))
+	// 			make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
+	// 	}
+	// }
+	// draw_player(data, round(data->px), round(data->py));
 	data->ra = data->pa + (PI / 180 * 32);
 	while (data->ray_num < 64)
 	{
@@ -130,7 +130,7 @@ void	raycast(t_data *data, double x_angle, double y_angle)
 	{
 		ix += x_angle / 10;
 		iy -= y_angle / 10;
-		my_img_pixel_put(data->game_img, floor(data->px + ix), floor(data->py + iy), 0xFFFF00);
+		// my_img_pixel_put(data->game_img, floor(data->px + ix), floor(data->py + iy), 0xFFFF00);
 	}
 	ca = data->pa - data->ra;
 	dist = sqrt((iy * iy) + (ix * ix)) * cos(ca);

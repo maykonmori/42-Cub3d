@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/07 13:37:24 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/08 03:10:31 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	validate_map(t_data *data)
 		}
 		y++;
 	}
-	error_wall(data);
+	// error_wall(data);
 	error_player(data);
 }
 
@@ -84,7 +84,6 @@ void	count_column(t_data *data)
 	data->map.count_column = 0;
 	if (!data->map.temp)
 		return ;
-	data->map.map = ft_split(data->map.temp, '\n');
 	temp = 0;
 	len_line = ft_strlen(data->map.map[0]);
 	i = 0;
@@ -103,10 +102,29 @@ void	count_column(t_data *data)
 	free(data->map.temp);
 }
 
-// void	get_map(t_data *data)
-// {
+void	get_map(t_data *data)
+{
+	int	n;
 
-// }
+	n = 0;
+	if (data->map.map_start == 0)
+		exit (1);
+	while (*(data->map.temp) != '\0' && data->map.map_start > 0)
+	{
+		if (*(data->map.temp) == '\n')
+			data->map.map_start--;
+		data->map.temp++;
+	}
+	data->map.map = ft_split(data->map.temp, '\n');
+	n = 0;
+	while (data->map.map[n] != NULL)
+	{
+		printf ("%s", data->map.map[n]);
+		if (check_map_chars(data->map.map[n]) == 0)
+			exit (1);
+		n++;
+	}
+}
 
 void	verify_map(char **argv, t_data *data)
 {
@@ -119,6 +137,13 @@ void	verify_map(char **argv, t_data *data)
 		error("map is not .cub", EXIT_FAILURE);
 	data->map.temp = ft_strdup("");
 	data->map.count_line = 0;
+	data->map.map_start = 0;
+	data->n_tex = NULL;
+	data->s_tex = NULL;
+	data->w_tex = NULL;
+	data->e_tex = NULL;
+	data->c_color = 0;
+	data->f_color = 0;
 	while (1)
 	{
 		data->map.line = get_next_line(fd);
@@ -129,7 +154,7 @@ void	verify_map(char **argv, t_data *data)
 		free(data->map.line);
 		data->map.count_line++;
 	}
-	// get_map(data);
+	get_map(data);
 	// count_column(data);
 	validate_map(data);
 	close(fd);
