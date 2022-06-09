@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/08 03:10:31 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/09 03:07:00 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,29 @@ void	validate_cep(int x, int y, t_data *data)
 	}
 }
 
+void	verify_wall(t_data *data)
+{
+	int	size;
+	int	n;
+
+	size = 0;
+	n = -1;
+	while (data->map.map[++n] != NULL)
+	{
+		if ((int)ft_strlen(data->map.map[n]) > size)	
+			size = ft_strlen(data->map.map[n]);
+	}
+	data->map.y_size = n;
+	data->map.x_size = size;
+	n = -1;
+	while (data->map.map[++n] != NULL)
+	{
+		while ((int)ft_strlen(data->map.map[n]) < size)
+			data->map.map[n] = ft_strjoin_free(data->map.map[n], " ");
+	}
+	check_walls(data);
+}
+
 void	validate_map(t_data *data)
 {
 	int	x;
@@ -61,7 +84,7 @@ void	validate_map(t_data *data)
 		x = 0;
 		while (data->map.map[y][x])
 		{
-			if (!(ft_strchr("01NESW", data->map.map[y][x])))
+			if (!(ft_strchr("01NESW ", data->map.map[y][x])))
 			{
 				free_vector(data);
 				error("Invalid char", EXIT_FAILURE);
@@ -71,35 +94,8 @@ void	validate_map(t_data *data)
 		}
 		y++;
 	}
-	// error_wall(data);
+	verify_wall(data);
 	error_player(data);
-}
-
-void	count_column(t_data *data)
-{
-	int	len_line;
-	int	temp;
-	int	i;
-
-	data->map.count_column = 0;
-	if (!data->map.temp)
-		return ;
-	temp = 0;
-	len_line = ft_strlen(data->map.map[0]);
-	i = 0;
-	while (data->map.map[i] != 0)
-	{
-		temp = ft_strlen(data->map.map[i]);
-		if (len_line != temp)
-		{
-			free(data->map.temp);
-			free_vector(data);
-			error("Invalid column size", EXIT_FAILURE);
-		}
-		i++;
-	}
-	data->map.count_column = temp;
-	free(data->map.temp);
 }
 
 void	get_map(t_data *data)
@@ -119,8 +115,7 @@ void	get_map(t_data *data)
 	n = 0;
 	while (data->map.map[n] != NULL)
 	{
-		printf ("%s", data->map.map[n]);
-		if (check_map_chars(data->map.map[n]) == 0)
+		if (check_map_chars(data->map.map[n]) == 0 || data->map.map[n][0] == '\n')
 			exit (1);
 		n++;
 	}
@@ -155,7 +150,6 @@ void	verify_map(char **argv, t_data *data)
 		data->map.count_line++;
 	}
 	get_map(data);
-	// count_column(data);
 	validate_map(data);
 	close(fd);
 }

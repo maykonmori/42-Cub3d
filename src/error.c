@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:56:49 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/05/21 15:29:33 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:53:49 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,6 @@ void	verify_arg(int argc)
 		error("Too many arguments", EXIT_FAILURE);
 	if (argc < 2)
 		error("Have few arguments", EXIT_FAILURE);
-}
-
-void	error_wall(t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (data->map.map[y])
-	{
-		x = 0;
-		while (data->map.map[y][x])
-		{
-			if (data->map.map[0][x] != '1' || \
-			data->map.map[data->map.count_line - 1][x] != '1')
-			{
-				free_vector(data);
-				error("Missing Wall", EXIT_FAILURE);
-			}
-			if (data->map.map[y][0] != '1' || \
-			data->map.map[y][data->map.count_column - 1] != '1')
-			{
-				free_vector(data);
-				error("Missing Wall", EXIT_FAILURE);
-			}
-			x++;
-		}
-		y++;
-	}
 }
 
 void	error_player(t_data *data)

@@ -18,7 +18,8 @@ SRC =	$(addprefix $(FOLDER), \
 		error.c \
 		verify_map.c \
 		verify_tex.c \
-		utils.c)
+		utils.c \
+		check_walls.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 

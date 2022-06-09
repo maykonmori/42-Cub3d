@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:47 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/08 03:21:01 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:35:59 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_map_chars(char *line)
 		return (0);
 	while (line[n] != '\0')
 	{
-		if (!(ft_strchr("01NESW ", line[n])) && line[n] != '\n')
+		if (!(ft_strchr("01NESW \n", line[n])))
 			return (0);
 		n++;
 	}

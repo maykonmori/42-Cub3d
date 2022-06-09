@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/08 02:37:32 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/09 03:04:37 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_map
 	char		*line;
 	char		*temp;
 	char		**map;
+	int			x_size;
+	int			y_size;
 	int			count_column;
 	int			count_line;
 	int			cont_player;
@@ -99,10 +101,9 @@ int	    validate_cub(char *s, char *ext);
 void	error(char *s, int n);
 void	verify_arg(int argc);
 void	verify_map(char **argv, t_data *data);
-void	count_column(t_data *data);
 void	validate_map(t_data *data);
 void	error_player(t_data *data);
-void	error_wall(t_data *data);
+void	verify_wall(t_data *data);
 void	free_vector(t_data *data);
 char	*ft_strjoin_free(char *s1, char const *s2);
 void	validate_cep(int x, int y, t_data *data);
@@ -115,5 +116,6 @@ int		get_rgb(t_data *data, char *line, int color);
 int		check_colors(t_data *data, char *line);
 void	get_map(t_data *data);
 int		check_map_chars(char *line);
+void		check_walls(t_data *data);
 
 #endif
