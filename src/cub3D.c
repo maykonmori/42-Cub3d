@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/08 03:23:59 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:35:51 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	start_game(t_data *data)
 	data->s_img = init_texture(data, data->s_tex);
 	data->w_img = init_texture(data, data->w_tex);
 	data->e_img = init_texture(data, data->e_tex);
+	data->turn_left = 0;
+	data->turn_right = 0;
 	data->move_up = 0;
 	data->move_down = 0;
 	data->move_left = 0;
@@ -50,10 +52,9 @@ int main(int argc, char **argv)
 	verify_map(argv, data);
 	start_game(data);
 	make_image (data);
+	mlx_loop_hook(data->mlx, ft_run, data);
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
-	mlx_hook(data->win, 17, 0L, exit_click, &data);
-	mlx_loop_hook(data->mlx, ft_run, data);
 	mlx_hook(data->win, 17, 0L, exit_click, &data);
 	mlx_loop(data->mlx);
 }

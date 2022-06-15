@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/09 03:04:37 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:49:01 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_data
 	char	*e_tex;
 	int		c_color;
 	int		f_color;
-	int		fractal;
 	int		color;
 	double	px;
 	double	py;
@@ -83,8 +82,6 @@ typedef struct s_data
 	float	x_max;
 	float	y_min;
 	float	y_max;
-	float	julia_x;
-	float	julia_y;
 	t_map	map;
 }	t_data;
 
@@ -108,7 +105,7 @@ void	free_vector(t_data *data);
 char	*ft_strjoin_free(char *s1, char const *s2);
 void	validate_cep(int x, int y, t_data *data);
 int		check_pixel_color(t_data *data, int x, int y);
-int		exit_click(void);
+int		exit_click(t_data *data);
 int		my_img_pixel_get(t_img *img, int x, int y);
 char	*add_tex_location(char *line, char *tex);
 void	check_line(t_data *data, char *line);
@@ -116,6 +113,8 @@ int		get_rgb(t_data *data, char *line, int color);
 int		check_colors(t_data *data, char *line);
 void	get_map(t_data *data);
 int		check_map_chars(char *line);
-void		check_walls(t_data *data);
+void	check_walls(t_data *data);
+void	free_images(t_data *data);
+
 
 #endif

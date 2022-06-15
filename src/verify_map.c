@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/09 03:07:00 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:55:47 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	verify_wall(t_data *data)
 	n = -1;
 	while (data->map.map[++n] != NULL)
 	{
-		if ((int)ft_strlen(data->map.map[n]) > size)	
+		if ((int)ft_strlen(data->map.map[n]) > size)
 			size = ft_strlen(data->map.map[n]);
 	}
 	data->map.y_size = n;
@@ -130,6 +130,7 @@ void	verify_map(char **argv, t_data *data)
 		error("file was not opened", EXIT_FAILURE);
 	if (validate_cub(argv[1], ".cub") == 0)
 		error("map is not .cub", EXIT_FAILURE);
+	data->map.cont_player = 0;
 	data->map.temp = ft_strdup("");
 	data->map.count_line = 0;
 	data->map.map_start = 0;

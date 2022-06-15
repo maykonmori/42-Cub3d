@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:56:49 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/09 02:53:49 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:48:29 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	free_vector(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->map.count_line)
-	{
-		free(data->map.map[i]);
-		i++;
-	}
-	free(data->map.map);
-	data->map.map = NULL;
-}
 
 void	error(char *s, int n)
 {

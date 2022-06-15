@@ -19,7 +19,8 @@ SRC =	$(addprefix $(FOLDER), \
 		verify_map.c \
 		verify_tex.c \
 		utils.c \
-		check_walls.c)
+		check_walls.c \
+		free_cub.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 
@@ -29,7 +30,7 @@ LIB = -lbsd -lmlx -lXext -lX11 -lm -lz
 
 LIBFT = ./libft/libft.a
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 all:$(NAME)
 

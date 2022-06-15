@@ -28,7 +28,7 @@ int	arrows_down(int keycode, t_data *data)
 	if (keycode == 65363)
 		data->turn_right = 1;
 	if (keycode == 65307)
-		exit_click();
+		exit_click(data);
 	return (0);
 }
 
@@ -47,7 +47,7 @@ int	arrows_up(int keycode, t_data *data)
 	if (keycode == 65363)
 		data->turn_right = 0;
 	if (keycode == 65307)
-		exit_click();
+		exit_click(data);
 	return (0);
 }
 

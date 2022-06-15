@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_tex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/08 03:29:36 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:47:44 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*add_tex_location(char *line, char *tex)
 {
 	char	*ret;
-	char	*temp;
+	// char	*temp;
 
 	if (tex != NULL)
 	{
@@ -25,9 +25,9 @@ char	*add_tex_location(char *line, char *tex)
 	ret = line + 3;
 	while (*ret == ' ')
 		ret++;
-	temp = ft_strdup(ret);
+	// temp = ft_strdup(ret);
 	ret = ft_strtrim(ret, "\n");
-	free (temp);
+	// free (temp);
 	return (ret);
 }
 
