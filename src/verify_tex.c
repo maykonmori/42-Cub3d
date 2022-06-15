@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/15 10:47:44 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:23:22 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ int	get_rgb(t_data *data, char *line, int color)
 	b = check_colors(data, split[2]);
 	if (split[3] != NULL)
 		exit (1);
+	free(split[0]);
+	free(split[1]);
+	free(split[2]);
+	free(split);
+	split = NULL;
 	return ((r * 65536) + (g * 256) + b);
 }
 

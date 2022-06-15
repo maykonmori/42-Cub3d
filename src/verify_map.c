@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/15 10:55:47 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:26:45 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,10 @@ void	validate_map(t_data *data)
 void	get_map(t_data *data)
 {
 	int	n;
+	char *temp;
 
 	n = 0;
+	temp = data->map.temp;
 	if (data->map.map_start == 0)
 		exit (1);
 	while (*(data->map.temp) != '\0' && data->map.map_start > 0)
@@ -112,13 +114,36 @@ void	get_map(t_data *data)
 		data->map.temp++;
 	}
 	data->map.map = ft_split(data->map.temp, '\n');
+	free(temp);
+	data->map.temp = NULL;
 	n = 0;
 	while (data->map.map[n] != NULL)
 	{
 		if (check_map_chars(data->map.map[n]) == 0 || data->map.map[n][0] == '\n')
+		{
+			exit_click(data);
 			exit (1);
+		}
 		n++;
 	}
+}
+
+void check_info(t_data *data)
+{
+	if(data->n_tex == NULL)
+		exit_click(data);
+	if(data->s_tex == NULL)
+		exit_click(data);
+	if(data->w_tex == NULL)
+		exit_click(data);
+	if(data->e_tex == NULL)
+		exit_click(data);
+	if(data->s_tex == NULL)
+		exit_click(data);
+	if(data->f_color == 0)
+		exit_click(data);
+	if(data->c_color == 0)
+		exit_click(data);
 }
 
 void	verify_map(char **argv, t_data *data)
@@ -150,6 +175,7 @@ void	verify_map(char **argv, t_data *data)
 		free(data->map.line);
 		data->map.count_line++;
 	}
+	check_info(data);
 	get_map(data);
 	validate_map(data);
 	close(fd);

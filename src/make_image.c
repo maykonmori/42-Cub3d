@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/08 03:39:00 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:21:50 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	make_image(t_data *data)
 	data->ray_num = 0;
 	mlx_put_image_to_window(data->mlx, data->win, data->game_img->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->game_img->img);
+	free(data->game_img);
 }
 
 void	raycast(t_data *data, double x_angle, double y_angle)

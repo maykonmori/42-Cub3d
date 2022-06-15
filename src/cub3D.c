@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/15 14:35:51 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:20:25 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		verify_arg(argc);
-	data = malloc (sizeof(t_data));
+	data = ft_calloc (sizeof(t_data), 1);
 	verify_map(argv, data);
 	start_game(data);
 	make_image (data);
 	mlx_loop_hook(data->mlx, ft_run, data);
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
-	mlx_hook(data->win, 17, 0L, exit_click, &data);
+	mlx_hook(data->win, 17, 0L, exit_click, data);
 	mlx_loop(data->mlx);
 }
