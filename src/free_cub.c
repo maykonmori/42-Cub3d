@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:36:58 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/15 17:22:20 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:18:27 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	free_vector(t_data *data)
 	i = 0;
 	if(!data->map.map)
 		return ;
-	while (i < data->map.y_size)
+	while (data->map.map[i])
 	{
-			free(data->map.map[i]);
-			i++;
+		free(data->map.map[i]);
+		i++;
 	}
-		free(data->map.map);
-		data->map.map = NULL;
+	free(data->map.map);
+	data->map.map = NULL;
 }
 
 void	free_images(t_data *data)

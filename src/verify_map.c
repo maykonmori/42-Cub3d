@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/15 17:26:45 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:04:19 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ void	get_map(t_data *data)
 	n = 0;
 	temp = data->map.temp;
 	if (data->map.map_start == 0)
+	{
+		printf("get_map01");
 		exit (1);
+	}
 	while (*(data->map.temp) != '\0' && data->map.map_start > 0)
 	{
 		if (*(data->map.temp) == '\n')
@@ -121,6 +124,7 @@ void	get_map(t_data *data)
 	{
 		if (check_map_chars(data->map.map[n]) == 0 || data->map.map[n][0] == '\n')
 		{
+			printf("get_map02");
 			exit_click(data);
 			exit (1);
 		}
