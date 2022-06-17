@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 03:10:53 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/17 03:20:31 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	make_image(t_data *data);
 void	draw_player(t_data *data, int x, int y);
 void	my_img_pixel_put(t_img	*img, int x, int y, int color);
 void	start_game(t_data *data);
-void	raycast(t_data *data, double x, double y);
+void	raycast(t_data *data, double ra);
 int	    validate_cub(char *s, char *ext);
 void	error(char *s, int n);
 void	verify_arg(int argc);
@@ -114,7 +114,8 @@ int		get_rgb(t_data *data, char *line, int color);
 int		check_colors(t_data *data, char *line);
 void	get_map(t_data *data);
 int		check_map_chars(char *line);
-void	check_walls(t_data *data);
 void	free_images(t_data *data);
+void	check_walls(t_data *data);
+void	make_vertical_line(t_data *data, int distance, double ix, t_img *img);
 
 #endif
