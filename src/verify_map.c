@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 03:05:20 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/17 14:10:20 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,19 +135,40 @@ void	get_map(t_data *data)
 void check_info(t_data *data)
 {
 	if(data->n_tex == NULL)
+	{
+		printf("Error\n Invalid TEX\n");
 		exit_click(data);
+	}
 	if(data->s_tex == NULL)
+	{
+		printf("Error\n Invalid TEX\n");
 		exit_click(data);
+	}
 	if(data->w_tex == NULL)
+	{
+		printf("Error\n Invalid TEX\n");
 		exit_click(data);
+	}
 	if(data->e_tex == NULL)
+	{
+		printf("Error\n Invalid TEX\n");
 		exit_click(data);
+	}
 	if(data->s_tex == NULL)
+	{
+		printf("Error\n Invalid TEX\n");
 		exit_click(data);
+	}
 	if(data->f_color == 0)
+	{
+		printf("Error\n Invalid RGB\n");
 		exit_click(data);
+	}
 	if(data->c_color == 0)
+	{
+		printf("Error\n Invalid RGB\n");
 		exit_click(data);
+	}
 }
 
 void	verify_map(char **argv, t_data *data)
@@ -160,7 +181,6 @@ void	verify_map(char **argv, t_data *data)
 		error("file was not opened", EXIT_FAILURE);
 	if (validate_cub(argv[1], ".cub") == 0)
 		error("map is not .cub", EXIT_FAILURE);
-	data->map.cont_player = 0;
 	data->map.temp = ft_strdup("");
 	data->map.count_line = 0;
 	data->map.map_start = 0;
@@ -190,7 +210,6 @@ void	verify_map(char **argv, t_data *data)
 		data->map.count_line++;
 		n++;
 	}
-	printf ("%s\n", data->map.temp);
 	check_info(data);
 	get_map(data);
 	validate_map(data);

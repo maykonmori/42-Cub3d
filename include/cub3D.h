@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 03:20:31 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:24:03 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ int		check_map_chars(char *line);
 void	free_images(t_data *data);
 void	check_walls(t_data *data);
 void	make_vertical_line(t_data *data, int distance, double ix, t_img *img);
+int		matriz_len(char **split);
 
 #endif

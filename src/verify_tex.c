@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_tex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/17 02:59:51 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:39:47 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,26 @@ int	get_rgb(t_data *data, char *line, int color)
 	int		r;
 	int		g;
 	int		b;
+	int		i;
 
+	i = 0;
 	temp = line;
 	line++;
 	if (color != 0)
 	{
-		printf ("get_rgb error");
+		printf("aqui");
 		exit (1);
 	}
 	while (*line == ' ')
 		line++;
 	split = ft_split(line, ',');
+	i = matriz_len(split);
+	if(i != 3)
+	{
+		printf("Error\n Invalid RGB\n");
+		free_split(split);
+		exit_click(data);
+	}
 	line = temp;
 	r = check_colors(data, split[0]);
 	g = check_colors(data, split[1]);
@@ -84,16 +93,10 @@ int	get_rgb(t_data *data, char *line, int color)
 		printf ("get_rgb 02");
 		exit (1);
 	}
-	free(split[0]);
-	free(split[1]);
-	free(split[2]);
-	free(split);
+	free_split(split);
 	split = NULL;
 	if (r == -1 || g == -1 || b == -1)
-	{
-		printf("saiu aqui");
 		exit_click(data);
-	}
 	return ((r * 65536) + (g * 256) + b);
 }
 
@@ -109,14 +112,11 @@ void	check_line(t_data *data, char *line)
 		data->e_tex = add_tex_location(line, data->e_tex);
 	if (ft_strncmp("F ", line, 2) == 0)
 	{
-		printf("\nsaiu no F\n");
+		printf("Entrou no F");
 		data->f_color = get_rgb(data, line, data->f_color);
 	}
 	if (ft_strncmp("C ", line, 2) == 0)
-	{
-		printf("\nsaiu no C\n");
 		data->c_color = get_rgb(data, line, data->c_color);
-	}
 	if (check_map_chars(line) == 1 && data->map.map_start == 0)
 		data->map.map_start = data->map.count_line;
 }
