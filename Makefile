@@ -19,7 +19,8 @@ SRC =	$(addprefix $(FOLDER), \
 		verify_map.c \
 		verify_tex.c \
 		utils.c \
-		check_walls.c)
+		check_walls.c \
+		raycast.c)
 
 OBJS	= $(patsubst $(FOLDER)%.c, $(FOLDER_OBJS)%.o, $(SRC))
 

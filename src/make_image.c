@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/08 03:39:00 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 06:07:31 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	make_image(t_data *data)
 	data->ra = data->pa + (PI / 180 * 32);
 	while (data->ray_num < 64)
 	{
-		raycast(data, cos(data->ra), sin(data->ra));
+		raycast(data, data->ra);
 		data->ra -= PI / 180;
 		data->ray_num++;
 	}
@@ -117,29 +117,3 @@ void	make_image(t_data *data)
 	mlx_destroy_image(data->mlx, data->game_img->img);
 }
 
-void	raycast(t_data *data, double x_angle, double y_angle)
-{
-	float		ix;
-	float		iy;
-	double		ca;
-	double		dist;
-
-	ix = 0;
-	iy = 0;
-	while (data->map.map[(int)floor(data->py + iy + y_angle) / TILE_SIZE][(int)floor(data->px + ix + x_angle) / TILE_SIZE] != '1')
-	{
-		ix += x_angle / 10;
-		iy -= y_angle / 10;
-		// my_img_pixel_put(data->game_img, floor(data->px + ix), floor(data->py + iy), 0xFFFF00);
-	}
-	ca = data->pa - data->ra;
-	dist = sqrt((iy * iy) + (ix * ix)) * cos(ca);
-	if (data->map.map[(int)floor(data->py + iy) / TILE_SIZE][(int)floor(data->px + ix - x_angle) / TILE_SIZE] != '1' && x_angle >= 0)
-		make_vertical_line(data, round(dist), data->py + iy, data->e_img);
-	else if ((data->map.map[(int)floor(data->py + iy) / TILE_SIZE][(int)floor(data->px + ix - x_angle) / TILE_SIZE] != '1' && x_angle < 0))
-		make_vertical_line(data, round(dist), data->py + iy, data->w_img);
-	else if (y_angle >= 0)
-		make_vertical_line(data, round(dist), data->px + ix, data->n_img);
-	else
-		make_vertical_line(data, round(dist), data->px + ix, data->s_img);
-}

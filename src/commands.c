@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/09 03:10:21 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/17 01:46:48 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,28 @@ int	ft_run(t_data *data)
 		y_check = -1;
 	if (data->move_up == 1 && data->map.map[((int)round(data->py - (y_check * 10))) / 64][((int)round(data->px + (x_check * 10)) / 64)] != '1')
 	{
-		data->px += 3 * cos(data->pa);
-		data->py -= 3 * sin(data->pa);
+		data->px += 2 * cos(data->pa);
+		data->py -= 2 * sin(data->pa);
 	}
 	if (data->move_down == 1 && data->map.map[((int)round(data->py + (y_check * 10))) / 64][((int)round(data->px - (x_check * 10)) / 64)] != '1')
 	{
-		data->px -= 3 * cos(data->pa);
-		data->py += 3 * sin(data->pa);
+		data->px -= 2 * cos(data->pa);
+		data->py += 2 * sin(data->pa);
 	}
 	if (data->move_right == 1 && data->map.map[((int)round(data->py + (x_check * 10))) / 64][((int)round(data->px + (y_check * 10)) / 64)] != '1')
 	{
-		data->px += 3 * sin(data->pa);
-		data->py += 3 * cos(data->pa);
+		data->px += 2 * sin(data->pa);
+		data->py += 2 * cos(data->pa);
 	}
 	if (data->move_left == 1 && data->map.map[((int)round(data->py - (x_check * 10))) / 64][((int)round(data->px - (y_check * 10)) / 64)] != '1')
 	{
-		data->px -= 3 * sin(data->pa);
-		data->py -= 3 * cos(data->pa);
+		data->px -= 2 * sin(data->pa);
+		data->py -= 2 * cos(data->pa);
 	}
 	if (data->turn_left == 1)
-		data->pa += PI / 180 * 2;
+		data->pa += PI / 180;
 	if (data->turn_right == 1)
-		data->pa -= PI / 180 * 2;
+		data->pa -= PI / 180;
 	if (data->pa > 2 * PI)
 		data->pa -= 2 * PI;
 	if (data->pa < 0)
