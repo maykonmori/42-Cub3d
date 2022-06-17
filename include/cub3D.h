@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/15 14:49:01 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/17 03:10:53 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct s_map
 {
 	char		*line;
+	char		**lines;
 	char		*temp;
 	char		**map;
 	int			x_size;
@@ -101,7 +102,7 @@ void	verify_map(char **argv, t_data *data);
 void	validate_map(t_data *data);
 void	error_player(t_data *data);
 void	verify_wall(t_data *data);
-void	free_vector(t_data *data);
+void	free_split(char **split);
 char	*ft_strjoin_free(char *s1, char const *s2);
 void	validate_cep(int x, int y, t_data *data);
 int		check_pixel_color(t_data *data, int x, int y);
@@ -115,6 +116,5 @@ void	get_map(t_data *data);
 int		check_map_chars(char *line);
 void	check_walls(t_data *data);
 void	free_images(t_data *data);
-
 
 #endif

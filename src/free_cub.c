@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   free_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:36:58 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/16 12:18:27 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/17 02:49:32 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_vector(t_data *data)
+void	free_split(char **split)
 {
 	int	i;
 
 	i = 0;
-	if(!data->map.map)
+	if(!split)
 		return ;
-	while (data->map.map[i])
+	while (split[i])
 	{
-		free(data->map.map[i]);
+		free(split[i]);
 		i++;
 	}
-	free(data->map.map);
-	data->map.map = NULL;
+	free(split);
 }
 
 void	free_images(t_data *data)

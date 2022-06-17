@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:56:49 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/14 20:48:29 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/17 03:01:52 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	error_player(t_data *data)
 {
 	if (data->map.cont_player != 1)
 	{
-		free_vector(data);
+		free_split(data->map.map);
 		error("Invalid player quantity", EXIT_FAILURE);
 	}
 }

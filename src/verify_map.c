@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/16 13:04:19 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/17 03:05:20 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	validate_map(t_data *data)
 		{
 			if (!(ft_strchr("01NESW ", data->map.map[y][x])))
 			{
-				free_vector(data);
+				free_split(data->map.map);
 				error("Invalid char", EXIT_FAILURE);
 			}
 			validate_cep(x, y, data);
@@ -153,6 +153,7 @@ void check_info(t_data *data)
 void	verify_map(char **argv, t_data *data)
 {
 	int	fd;
+	int	n;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
@@ -169,16 +170,27 @@ void	verify_map(char **argv, t_data *data)
 	data->e_tex = NULL;
 	data->c_color = 0;
 	data->f_color = 0;
+	n = 0;
 	while (1)
 	{
 		data->map.line = get_next_line(fd);
 		if (data->map.line == NULL)
 			break ;
-		check_line(data, data->map.line);
 		data->map.temp = ft_strjoin_free(data->map.temp, data->map.line);
 		free(data->map.line);
-		data->map.count_line++;
 	}
+	data->map.lines = ft_split (data->map.temp, '\n');
+	free (data->map.temp);
+	data->map.temp = ft_strdup("");
+	while (data->map.lines[n] != NULL)
+	{
+		check_line(data, data->map.lines[n]);
+		data->map.temp = ft_strjoin_free(data->map.temp, data->map.lines[n]);
+		data->map.temp = ft_strjoin_free(data->map.temp, "\n");
+		data->map.count_line++;
+		n++;
+	}
+	printf ("%s\n", data->map.temp);
 	check_info(data);
 	get_map(data);
 	validate_map(data);
