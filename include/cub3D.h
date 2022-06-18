@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 20:54:42 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:39:33 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,9 @@ void	free_images(t_data *data);
 void	check_walls(t_data *data);
 void	make_vertical_line(t_data *data, int distance, double ix, t_img *img);
 int		matriz_len(char **split);
+void	check_diagonal_up_right(t_data *data, int y, int x);
+void	check_diagonal_up_left(t_data *data, int y, int x);
+void	check_diagonal_down_right(t_data *data, int y, int x);
+void	check_diagonal_down_left(t_data *data, int y, int x);
 
 #endif
