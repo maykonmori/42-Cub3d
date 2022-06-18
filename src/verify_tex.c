@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/18 16:01:35 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:11:12 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 	{
 		free (buff);
 		free (ret);
+		close(fd);
 		printf("Error\nInvalid texture file\n");
 		exit_click(data);
 	}
@@ -45,6 +46,7 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 	{
 		free (buff);
 		free (ret);
+		close(fd);
 		printf("Error\nInvalid texture file\n");
 		exit_click(data);
 	}
