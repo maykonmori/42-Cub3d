@@ -16,6 +16,7 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 {
 	char	*ret;
 	int		fd;
+	char	*buff;
 
 	if (tex != NULL)
 	{
@@ -32,8 +33,20 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 		printf("Error\nTexture not found\n");
 		exit_click(data);
 	}
-	else
-		close(fd);
+	buff = malloc(sizeof(char) * 9);
+	if (read(fd, buff, 9) <= 0)
+	{
+		free (buff);
+		printf("Error\nInvalid texture file\n");
+		exit_click(data);
+	}
+	if (ft_strncmp(buff, "/* XPM */", 9) != 0)
+	{
+		free (buff);
+		printf("Error\nInvalid texture file\n");
+		exit_click(data);
+	}
+	close(fd);
 	return (ret);
 }
 
