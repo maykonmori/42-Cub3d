@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/home/cakomori/42SP/42-Cub3d/cub3D",
-			"args": ["/home/cakomori/42SP/42-Cub3d/assets/map/invalid_RGB_001.cub"],
+			"args": ["/home/cakomori/42SP/42-Cub3d/assets/map/invalid_tex_WE_020.cub"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

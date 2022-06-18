@@ -8,44 +8,44 @@ void	check_left(t_data *data, int y, int x)
 			return ;
 		x--;
 	}
-	printf ("Error mapa nao rodeado por 1\n");
-	exit (1);
+	printf ("Error\n mapa nao rodeado por 1\n");
+	exit_click(data);
 }
 
 void	check_right(t_data *data, int y, int x)
 {
 	while (x < data->map.x_size)
 	{
-		if (data->map.map[y][x] == '1')	
+		if (data->map.map[y][x] == '1')
 			return ;
 		x++;
 	}
-	printf ("Error mapa nao rodeado por 1\n");
-	exit (1);
+	printf ("Error\n mapa nao rodeado por 1\n");
+	exit_click(data);
 }
 
 void	check_down(t_data *data, int y, int x)
 {
 	while (y < data->map.y_size)
 	{
-		if (data->map.map[y][x] == '1')	
+		if (data->map.map[y][x] == '1')
 			return ;
 		y++;
 	}
-	printf ("Error mapa nao rodeado por 1\n");
-	exit (1);
+	printf ("Error\n mapa nao rodeado por 1\n");
+	exit_click(data);
 }
 
 void	check_up(t_data *data, int y, int x)
 {
 	while (y >= 0)
 	{
-		if (data->map.map[y][x] == '1')	
+		if (data->map.map[y][x] == '1')
 			return ;
 		y--;
 	}
-	printf ("Error mapa nao rodeado por 1\n");
-	exit (1);
+	printf ("Error\nMapa nao rodeado por 1\n");
+	exit_click(data);
 }
 
 void	check_walls(t_data *data)
