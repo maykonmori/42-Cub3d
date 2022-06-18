@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/18 10:53:07 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:21:57 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*add_tex_location(char *line, char *tex, t_data *data)
 {
 	char	*ret;
-	// char	*temp;
+	int		fd;
 
 	if (tex != NULL)
 	{
@@ -25,9 +25,15 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 	ret = line + 3;
 	while (*ret == ' ')
 		ret++;
-	// temp = ft_strdup(ret);
 	ret = ft_strtrim(ret, "\n");
-	// free (temp);
+	fd = open(ret, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Error\nTexture not found\n");
+		exit_click(data);
+	}
+	else
+		close(fd);
 	return (ret);
 }
 
@@ -62,8 +68,10 @@ int	get_rgb(t_data *data, char *line, int color)
 	int		g;
 	int		b;
 	int		i;
+	int		v;
 
 	i = 0;
+	v = 0;
 	temp = line;
 	line++;
 	if (color != 0)
@@ -73,6 +81,17 @@ int	get_rgb(t_data *data, char *line, int color)
 	}
 	while (*line == ' ')
 		line++;
+	while (line[i] != '\0')
+	{
+		if (line[i] == ',')
+			v++;
+		i++;
+	}
+	if (v != 2)
+	{
+		printf("Error\n Invalid RGB\n");
+		exit_click(data);
+	}
 	split = ft_split(line, ',');
 	i = matriz_len(split);
 	if(i != 3)
@@ -104,16 +123,21 @@ void	check_line(t_data *data, char *line)
 {
 	if (ft_strncmp("NO ", line, 3) == 0)
 		data->n_tex = add_tex_location(line, data->n_tex, data);
-	if (ft_strncmp("SO ", line, 3) == 0)
+	else if (ft_strncmp("SO ", line, 3) == 0)
 		data->s_tex = add_tex_location(line, data->s_tex, data);
-	if (ft_strncmp("WE ", line, 3) == 0)
+	else if (ft_strncmp("WE ", line, 3) == 0)
 		data->w_tex = add_tex_location(line, data->w_tex, data);
-	if (ft_strncmp("EA ", line, 3) == 0)
+	else if (ft_strncmp("EA ", line, 3) == 0)
 		data->e_tex = add_tex_location(line, data->e_tex, data);
-	if (ft_strncmp("F ", line, 2) == 0)
+	else if (ft_strncmp("F ", line, 2) == 0)
 		data->f_color = get_rgb(data, line, data->f_color);
-	if (ft_strncmp("C ", line, 2) == 0)
+	else if (ft_strncmp("C ", line, 2) == 0)
 		data->c_color = get_rgb(data, line, data->c_color);
-	if (check_map_chars(line) == 1 && data->map.map_start == 0)
+	else if (check_map_chars(line) == 1 && data->map.map_start == 0)
 		data->map.map_start = data->map.count_line;
+	else if (check_map_chars(line) == 0)
+	{
+		printf("Error\nInvalid file\n");
+		exit_click(data);
+	}
 }

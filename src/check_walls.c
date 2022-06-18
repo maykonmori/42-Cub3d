@@ -2,7 +2,7 @@
 
 void	check_diagonal_up_right(t_data *data, int y, int x)
 {
-	while (y >= 0 || x < data->map.x_size)
+	while (y >= 0 && x < data->map.x_size && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -15,7 +15,7 @@ void	check_diagonal_up_right(t_data *data, int y, int x)
 
 void	check_diagonal_up_left(t_data *data, int y, int x)
 {
-	while (y >= 0 || x >= 0)
+	while (y >= 0 && x >= 0 && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -28,7 +28,7 @@ void	check_diagonal_up_left(t_data *data, int y, int x)
 
 void	check_diagonal_down_left(t_data *data, int y, int x)
 {
-	while (x >= 0 || y < data->map.y_size)
+	while (x >= 0 && y < data->map.y_size && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -41,7 +41,7 @@ void	check_diagonal_down_left(t_data *data, int y, int x)
 
 void	check_diagonal_down_right(t_data *data, int y, int x)
 {
-	while (x < data->map.x_size || y < data->map.y_size)
+	while (x < data->map.x_size && y < data->map.y_size && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -54,7 +54,7 @@ void	check_diagonal_down_right(t_data *data, int y, int x)
 
 void	check_left(t_data *data, int y, int x)
 {
-	while (x >= 0)
+	while (x >= 0 && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -66,7 +66,7 @@ void	check_left(t_data *data, int y, int x)
 
 void	check_right(t_data *data, int y, int x)
 {
-	while (x < data->map.x_size)
+	while (x < data->map.x_size && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -78,7 +78,7 @@ void	check_right(t_data *data, int y, int x)
 
 void	check_down(t_data *data, int y, int x)
 {
-	while (y < data->map.y_size)
+	while (y < data->map.y_size && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
@@ -91,7 +91,7 @@ void	check_down(t_data *data, int y, int x)
 
 void	check_up(t_data *data, int y, int x)
 {
-	while (y >= 0)
+	while (y >= 0 && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			return ;
