@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 01:46:48 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 02:48:12 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,22 @@ int	arrows_up(int keycode, t_data *data)
 
 int	ft_run(t_data *data)
 {
-	int	x_check;
-	int	y_check;
-
-	x_check = 1;
-	y_check = 1;
-	if (cos(data->pa) < 0)
-		x_check = -1;
-	if (sin(data->pa) < 0)
-		y_check = -1;
-	if (data->move_up == 1 && data->map.map[((int)round(data->py - (y_check * 10))) / 64][((int)round(data->px + (x_check * 10)) / 64)] != '1')
+	if (data->move_up == 1 && get_distance(data, data->pa) >= 30)
 	{
 		data->px += 2 * cos(data->pa);
 		data->py -= 2 * sin(data->pa);
 	}
-	if (data->move_down == 1 && data->map.map[((int)round(data->py + (y_check * 10))) / 64][((int)round(data->px - (x_check * 10)) / 64)] != '1')
+	if (data->move_down == 1 && get_distance(data, data->pa + PI) >= 30)
 	{
 		data->px -= 2 * cos(data->pa);
 		data->py += 2 * sin(data->pa);
 	}
-	if (data->move_right == 1 && data->map.map[((int)round(data->py + (x_check * 10))) / 64][((int)round(data->px + (y_check * 10)) / 64)] != '1')
+	if (data->move_right == 1 && get_distance(data, data->pa - PI / 2) >= 30)
 	{
 		data->px += 2 * sin(data->pa);
 		data->py += 2 * cos(data->pa);
 	}
-	if (data->move_left == 1 && data->map.map[((int)round(data->py - (x_check * 10))) / 64][((int)round(data->px - (y_check * 10)) / 64)] != '1')
+	if (data->move_left == 1  && get_distance(data, data->pa + PI / 2) >= 30)
 	{
 		data->px -= 2 * sin(data->pa);
 		data->py -= 2 * cos(data->pa);
