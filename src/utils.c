@@ -60,7 +60,7 @@ int	matriz_len(char **split)
 	int	i;
 
 	i = 0;
-	if(!split)
+	if (!split)
 		return (0);
 	while (split[i])
 		i++;

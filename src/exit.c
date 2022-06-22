@@ -14,11 +14,11 @@
 
 int	exit_click(t_data *data)
 {
-	if(data->map.line)
+	if (data->map.line)
 		free(data->map.line);
-	if(data->map.temp)
+	if (data->map.temp)
 		free(data->map.temp);
-	if(data->map.map)
+	if (data->map.map)
 		free_split(data->map.map);
 	free_split(data->map.lines);
 	free_images(data);
