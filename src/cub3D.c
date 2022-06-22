@@ -6,10 +6,9 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:46:50 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/15 17:20:25 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/21 22:16:03 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
@@ -42,9 +41,9 @@ void	start_game(t_data *data)
 	data->ray_num = 1;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	if (argc != 2)
 		verify_arg(argc);
