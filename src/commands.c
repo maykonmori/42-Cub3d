@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/21 02:48:12 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 02:26:43 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,39 @@ int	arrows_up(int keycode, t_data *data)
 	return (0);
 }
 
+int		check_collision(t_data *data, double ra)
+{
+	int	mapX;
+	int	mapY;
+	
+	get_distance(data, ra);
+	mapX = data->px + (30 * data->stepX);
+	mapY = data->py + (30 * data->stepY);
+	mapX = mapX >> 6;
+	mapY = mapY >> 6;
+	if (data->map.map[mapY][(int)(data->px) >> 6] == '1' || data->map.map[(int)(data->py) >> 6][mapX] == '1' || data->map.map[mapY][mapX] == '1')
+		return (0);
+	return (1);
+}
+
 int	ft_run(t_data *data)
 {
-	if (data->move_up == 1 && get_distance(data, data->pa) >= 30)
+	if (data->move_up == 1 && check_collision(data, data->pa))
 	{
 		data->px += 2 * cos(data->pa);
 		data->py -= 2 * sin(data->pa);
 	}
-	if (data->move_down == 1 && get_distance(data, data->pa + PI) >= 30)
+	if (data->move_down == 1 && check_collision(data, data->pa + PI))
 	{
 		data->px -= 2 * cos(data->pa);
 		data->py += 2 * sin(data->pa);
 	}
-	if (data->move_right == 1 && get_distance(data, data->pa - PI / 2) >= 30)
+	if (data->move_right == 1 && check_collision(data, data->pa - PI / 2))
 	{
 		data->px += 2 * sin(data->pa);
 		data->py += 2 * cos(data->pa);
 	}
-	if (data->move_left == 1  && get_distance(data, data->pa + PI / 2) >= 30)
+	if (data->move_left == 1  && check_collision(data, data->pa + PI / 2))
 	{
 		data->px -= 2 * sin(data->pa);
 		data->py -= 2 * cos(data->pa);

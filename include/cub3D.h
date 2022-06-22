@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/21 02:43:55 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 02:11:08 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ void	check_diagonal_up_left(t_data *data, int y, int x);
 void	check_diagonal_down_right(t_data *data, int y, int x);
 void	check_diagonal_down_left(t_data *data, int y, int x);
 double	get_distance(t_data *data, double ra);
+void	get_sidedist(t_data *data, double ra);
 
 #endif
