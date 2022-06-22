@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/22 03:17:57 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 22:33:19 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,6 @@ typedef struct s_data
 	int		turn_left;
 	int		turn_right;
 	int		ray_num;
-	float	x_min;
-	float	x_max;
-	float	y_min;
-	float	y_max;
 	double	deltaDistX;
     double	deltaDistY;
 	double	sideDistX;
