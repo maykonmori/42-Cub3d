@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/22 03:22:41 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:37:00 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,40 +134,19 @@ void	get_map(t_data *data)
 void	check_info(t_data *data)
 {
 	if (data->n_tex == NULL)
-	{
-		printf("Error\n Invalid TEX\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid TEX\n");
 	if (data->s_tex == NULL)
-	{
-		printf("Error\n Invalid TEX\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid TEX\n");
 	if (data->w_tex == NULL)
-	{
-		printf("Error\n Invalid TEX\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid TEX\n");
 	if (data->e_tex == NULL)
-	{
-		printf("Error\n Invalid TEX\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid TEX\n");
 	if (data->s_tex == NULL)
-	{
-		printf("Error\n Invalid TEX\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid TEX\n");
 	if (data->f_color == 0)
-	{
-		printf("Error\n Invalid RGB\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid RGB\n");
 	if (data->c_color == 0)
-	{
-		printf("Error\n Invalid RGB\n");
-		exit_click(data);
-	}
+		error(data, "Error\n Invalid RGB\n");
 }
 
 void	verify_map(char **argv, t_data *data)
