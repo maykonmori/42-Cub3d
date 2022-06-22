@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:36:58 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 02:49:32 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 02:54:44 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	free_images(t_data *data)
+void	destroy_images(t_data *data)
 {
 	if(data->n_img)
 	{
@@ -49,6 +49,11 @@ void	free_images(t_data *data)
 		mlx_destroy_image(data->mlx, data->e_img->img);
 		free(data->e_img);
 	}
+}
+
+void	free_images(t_data *data)
+{
+	destroy_images(data);
 	if(data->n_tex)
 		free(data->n_tex);
 	if(data->s_tex)
