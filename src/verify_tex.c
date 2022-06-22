@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/18 16:11:12 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/21 22:19:58 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	get_rgb(t_data *data, char *line, int color)
 	}
 	split = ft_split(line, ',');
 	i = matriz_len(split);
-	if(i != 3)
+	if (i != 3)
 	{
 		printf("Error\n Invalid RGB\n");
 		free_split(split);
