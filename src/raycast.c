@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/22 03:27:47 by rkenji-s          #+#    #+#             */
+/*   Updated: 2022/06/22 03:29:55 by rkenji-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	get_sidedist(t_data *data, double ra)
@@ -9,7 +21,7 @@ void	get_sidedist(t_data *data, double ra)
 	}
 	else
 	{
-		data->sideDistY = fabs((64 - (int)(data->py) % 64)/ sin (ra));
+		data->sideDistY = fabs((64 - (int)(data->py) % 64) / sin (ra));
 		data->stepY = 1;
 	}
 	if (ra > PI / 2 && ra < 3 * PI / 2)
@@ -36,14 +48,8 @@ void	get_deltadist(t_data *data, double ra)
 		data->deltaDistY = fabs(64 / sin(ra));
 }
 
-double	get_distance(t_data *data, double ra)
+void	collision_loop(t_data *data)
 {
-	if (ra >= 2 * PI)
-		ra -= 2 * PI;
-	if (ra < 0)
-		ra += 2 * PI;
-	get_deltadist(data, ra);
-	get_sidedist(data, ra);
 	data->mapX = (int)(data->px) >> 6;
 	data->mapY = (int)(data->py) >> 6;
 	while (data->map.map[data->mapY][data->mapX] != '1')
@@ -61,9 +67,20 @@ double	get_distance(t_data *data, double ra)
 			data->wall = 1;
 		}
 	}
-	if(data->wall == 0)
+}
+
+double	get_distance(t_data *data, double ra)
+{
+	if (ra >= 2 * PI)
+		ra -= 2 * PI;
+	if (ra < 0)
+		ra += 2 * PI;
+	get_deltadist(data, ra);
+	get_sidedist(data, ra);
+	collision_loop(data);
+	if (data->wall == 0)
 		return (data->sideDistX - data->deltaDistX);
-    else
+	else
 		return (data->sideDistY - data->deltaDistY);
 }
 

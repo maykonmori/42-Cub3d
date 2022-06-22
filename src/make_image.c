@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/17 03:19:07 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:27:38 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,28 +83,10 @@ void	make_square(t_data *data, int x, int y, int color)
 
 void	make_image(t_data *data)
 {
-	// int		x;
-	// int		y;
-
 	data->game_img = malloc (sizeof(t_img));
 	data->game_img->img = mlx_new_image(data->mlx, 512, 512);
 	data->game_img->img_addr = mlx_get_data_addr(data->game_img->img, &data->game_img->img_bits_per_pixel,
 			&data->game_img->img_line_length, &data->game_img->img_endian);
-	// y = -1;
-	// while (data->map.map[++y])
-	// {
-	// 	x = -1;
-	// 	while (data->map.map[y][++x])
-	// 	{
-	// 		if (data->map.map[y][x] == '1')
-	// 			make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0xFF0000);
-	// 		else if (data->map.map[y][x] == '0')
-	// 			make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
-	// 		else if (ft_strchr("NEWS", data->map.map[y][x]))
-	// 			make_square(data, x * TILE_SIZE, y * TILE_SIZE, 0x808080);
-	// 	}
-	// }
-	// draw_player(data, round(data->px), round(data->py));
 	data->ra = data->pa + (PI / 180 * 32);
 	while (data->ray_num < 64)
 	{
