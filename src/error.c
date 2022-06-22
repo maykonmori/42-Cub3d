@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:56:49 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/22 03:27:17 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:20:28 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	verify_arg(int argc)
 {
 	if (argc > 2)
 	{
-		printf("\nToo many arguments");
+		printf("Error\nToo many arguments\n");
 		exit (1);
 	}
 	if (argc < 2)
 	{
-		printf("\nNot enough arguments");
+		printf("Error\nNot enough arguments\n");
 		exit (1);
 	}
 }

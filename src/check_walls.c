@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 03:31:55 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/22 03:31:56 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:10:36 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_diagonal_2(t_data *data, int y, int x)
 		x--;
 		y++;
 	}
-	if (data->map.map[y][x] != '1')
+	if (data->map.map[y] && data->map.map[y][x] != '1')
 		error(data, "Error\nMapa nao rodeado por 1\n");
 	while (temp_y >= 0 && temp_x < data->map.x_size \
 	&& data->map.map[temp_y][temp_x] != ' ')
@@ -54,7 +54,7 @@ void	check_diagonal_1(t_data *data, int y, int x)
 		x++;
 		y++;
 	}
-	if (data->map.map[y][x] != '1')
+	if (data->map.map[y] && data->map.map[y][x] != '1')
 		error(data, "Error\nMapa nao rodeado por 1\n");
 	while (temp_y >= 0 && temp_x >= 0 && data->map.map[temp_y][temp_x] != ' ')
 	{
@@ -97,13 +97,13 @@ void	check_vertical(t_data *data, int y, int x)
 
 	temp_x = x;
 	temp_y = y;
-	while (y >= 0 && data->map.map[y][x] != ' ')
+	while (y >= 0 && data->map.map[y] && data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			break ;
-		y--;
+		y++;
 	}
-	if (data->map.map[y][x] != '1')
+	if (data->map.map[y] && data->map.map[y][x] != '1')
 		error(data, "Error\nMapa nao rodeado por 1\n");
 	while (temp_y < data->map.y_size && data->map.map[temp_y][temp_x] != ' ')
 	{
