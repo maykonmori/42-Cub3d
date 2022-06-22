@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_walls.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/22 03:31:55 by rkenji-s          #+#    #+#             */
+/*   Updated: 2022/06/22 03:31:56 by rkenji-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	check_diagonal_2(t_data *data, int y, int x)
@@ -16,7 +28,8 @@ void	check_diagonal_2(t_data *data, int y, int x)
 	}
 	if (data->map.map[y][x] != '1')
 		error(data, "Error\nMapa nao rodeado por 1\n");
-	while (temp_y >= 0 && temp_x < data->map.x_size && data->map.map[temp_y][temp_x] != ' ')
+	while (temp_y >= 0 && temp_x < data->map.x_size \
+	&& data->map.map[temp_y][temp_x] != ' ')
 	{
 		if (data->map.map[temp_y][temp_x] == '1')
 			return ;
@@ -33,7 +46,8 @@ void	check_diagonal_1(t_data *data, int y, int x)
 
 	temp_x = x;
 	temp_y = y;
-	while (x < data->map.x_size && y < data->map.y_size && data->map.map[y][x] != ' ')
+	while (x < data->map.x_size && y < data->map.y_size \
+	&& data->map.map[y][x] != ' ')
 	{
 		if (data->map.map[y][x] == '1')
 			break ;
@@ -111,7 +125,9 @@ void	check_walls(t_data *data)
 		x = -1;
 		while (data->map.map[y][++x])
 		{
-			if (data->map.map[y][x] == '0' || data->map.map[y][x] == 'N' || data->map.map[y][x] == 'S' || data->map.map[y][x] == 'W' || data->map.map[y][x] == 'E')
+			if (data->map.map[y][x] == '0' || data->map.map[y][x] == 'N' || \
+			data->map.map[y][x] == 'S' || data->map.map[y][x] == 'W' \
+			|| data->map.map[y][x] == 'E')
 			{
 				check_vertical(data, y, x);
 				check_horizontal(data, y, x);
