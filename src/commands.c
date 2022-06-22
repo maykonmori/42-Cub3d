@@ -6,10 +6,9 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/22 02:26:43 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:25:57 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
@@ -51,22 +50,24 @@ int	arrows_up(int keycode, t_data *data)
 	return (0);
 }
 
-int		check_collision(t_data *data, double ra)
+int	check_collision(t_data *data, double ra)
 {
-	int	mapX;
-	int	mapY;
-	
+	int	map_x;
+	int	map_y;
+
 	get_distance(data, ra);
-	mapX = data->px + (30 * data->stepX);
-	mapY = data->py + (30 * data->stepY);
-	mapX = mapX >> 6;
-	mapY = mapY >> 6;
-	if (data->map.map[mapY][(int)(data->px) >> 6] == '1' || data->map.map[(int)(data->py) >> 6][mapX] == '1' || data->map.map[mapY][mapX] == '1')
+	map_x = data->px + (30 * data->stepX);
+	map_y = data->py + (30 * data->stepY);
+	map_x = map_x >> 6;
+	map_y = map_y >> 6;
+	if (data->map.map[map_y][(int)(data->px) >> 6] == '1' || \
+	data->map.map[(int)(data->py) >> 6][map_x] == '1' || \
+	data->map.map[map_y][map_x] == '1')
 		return (0);
 	return (1);
 }
 
-int	ft_run(t_data *data)
+void	movement(t_data *data)
 {
 	if (data->move_up == 1 && check_collision(data, data->pa))
 	{
@@ -83,11 +84,16 @@ int	ft_run(t_data *data)
 		data->px += 2 * sin(data->pa);
 		data->py += 2 * cos(data->pa);
 	}
-	if (data->move_left == 1  && check_collision(data, data->pa + PI / 2))
+	if (data->move_left == 1 && check_collision(data, data->pa + PI / 2))
 	{
 		data->px -= 2 * sin(data->pa);
 		data->py -= 2 * cos(data->pa);
 	}
+}
+
+int	ft_run(t_data *data)
+{
+	movement(data);
 	if (data->turn_left == 1)
 		data->pa += PI / 180;
 	if (data->turn_right == 1)
