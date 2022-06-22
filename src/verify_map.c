@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/18 14:57:34 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:20:01 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	validate_map(t_data *data)
 			if (!(ft_strchr("01NESW ", data->map.map[y][x])))
 			{
 				free_split(data->map.map);
-				error("Invalid char", EXIT_FAILURE);
+				error(data, "Invalid char");
 			}
 			validate_cep(x, y, data);
 			x++;
@@ -177,9 +177,9 @@ void	verify_map(char **argv, t_data *data)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		error("file was not opened", EXIT_FAILURE);
+		error(data, "file was not opened");
 	if (validate_cub(argv[1], ".cub") == 0)
-		error("map is not .cub", EXIT_FAILURE);
+		error(data, "map is not .cub");
 	data->map.temp = ft_strdup("");
 	data->map.count_line = 0;
 	data->map.map_start = 0;

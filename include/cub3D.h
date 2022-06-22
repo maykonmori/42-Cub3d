@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/22 02:11:08 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:17:57 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	my_img_pixel_put(t_img	*img, int x, int y, int color);
 void	start_game(t_data *data);
 void	raycast(t_data *data, double ra);
 int	    validate_cub(char *s, char *ext);
-void	error(char *s, int n);
 void	verify_arg(int argc);
 void	verify_map(char **argv, t_data *data);
 void	validate_map(t_data *data);
@@ -133,5 +132,6 @@ void	check_diagonal_down_right(t_data *data, int y, int x);
 void	check_diagonal_down_left(t_data *data, int y, int x);
 double	get_distance(t_data *data, double ra);
 void	get_sidedist(t_data *data, double ra);
+void	error(t_data *data, char *s);
 
 #endif

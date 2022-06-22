@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:56:49 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/18 11:35:46 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:19:06 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	error(char *s, int n)
+void	error(t_data *data, char *s)
 {
-	printf("Error %s\n", s);
-	exit(n);
+	printf("%s", s);
+	exit_click(data);
 }
 
 void	verify_arg(int argc)
 {
 	if (argc > 2)
-		error("\nToo many arguments", EXIT_FAILURE);
+	{
+		printf("\nToo many arguments");
+		exit (1);
+	}
 	if (argc < 2)
-		error("\nHave few arguments", EXIT_FAILURE);
+	{
+		printf("\nNot enough arguments");
+		exit (1);
+	}
 }
 
 void	error_player(t_data *data)
 {
 	if (data->map.cont_player != 1)
-	{
-		printf("Error\nInvalid player quantity\n");
-		exit_click(data);
-		// error("\nInvalid player quantity", EXIT_FAILURE);
-	}
+		error(data, "Error\nInvalid player quantity\n");
 }
