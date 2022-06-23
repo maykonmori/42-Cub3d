@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/21 22:33:19 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/23 02:28:50 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,43 +52,57 @@ typedef struct s_img
 	int		img_endian;
 }	t_img;
 
+typedef struct s_raycast
+{
+	int		x;
+	int		lineH;
+	int		lineO;
+	int		y_max;
+	int		y_ceil;
+	float	ty;
+	float	ty_step;
+	float	ty_off;
+	float	tx;
+}	t_raycast;
+
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	t_img	*game_img;
-	t_img	*n_img;
-	t_img	*s_img;
-	t_img	*w_img;
-	t_img	*e_img;
-	char	*s_tex;
-	char	*n_tex;
-	char	*w_tex;
-	char	*e_tex;
-	int		c_color;
-	int		f_color;
-	int		color;
-	double	px;
-	double	py;
-	float	pa;
-	float	ra;
-	int		move_up;
-	int		move_down;
-	int		move_left;
-	int		move_right;
-	int		turn_left;
-	int		turn_right;
-	int		ray_num;
-	double	deltaDistX;
-    double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	int		wall;
-	t_map	map;
+	void		*mlx;
+	void		*win;
+	t_img		*game_img;
+	t_img		*n_img;
+	t_img		*s_img;
+	t_img		*w_img;
+	t_img		*e_img;
+	char		*s_tex;
+	char		*n_tex;
+	char		*w_tex;
+	char		*e_tex;
+	int			c_color;
+	int			f_color;
+	int			color;
+	double		px;
+	double		py;
+	float		pa;
+	float		ra;
+	int			move_up;
+	int			move_down;
+	int			move_left;
+	int			move_right;
+	int			turn_left;
+	int			turn_right;
+	int			ray_num;
+	double		deltaDistX;
+    double		deltaDistY;
+	double		sideDistX;
+	double		sideDistY;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	int			wall;
+	t_map		map;
+	t_raycast	rc;
 }	t_data;
 
 
