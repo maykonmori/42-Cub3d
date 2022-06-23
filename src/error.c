@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:56:49 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/23 02:51:55 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:14:34 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	error_tex(t_data *data, char *buff, char *ret, int fd)
 {
-	free (buff);
-	free (ret);
-	close(fd);
+	if (buff)
+		free (buff);
+	if (ret)
+		free (ret);
+	if (fd >= 0)
+		close(fd);
 	error(data, "Error\nInvalid texture file\n");
 }
 

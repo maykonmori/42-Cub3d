@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/23 02:47:40 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:36:43 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	verify_map(char **argv, t_data *data)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		error(data, "file was not opened");
+		error(data, "Erro\nfile was not opened\n");
 	if (validate_cub(argv[1], ".cub") == 0)
 		error(data, "map is not .cub");
 	init_map(data);

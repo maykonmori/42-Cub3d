@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_tex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/23 03:04:34 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:15:09 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,19 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 	char	*ret;
 	int		fd;
 	char	*buff;
+	char	*temp;
 
+	buff = 0;
 	if (tex != NULL)
 		error(data, "Error\nInvalid texture");
 	ret = line + 3;
-	while (*ret == ' ')
-		ret++;
-	ret = ft_strtrim(ret, "\n");
+	temp = ret;
+	while (*temp == ' ')
+		temp++;
+	ret = ft_strtrim(temp, "\n");
 	fd = open(ret, O_RDONLY);
 	if (fd < 0)
-		error(data, "Error\nTexture not found\n");
+		error_tex(data, buff, ret, fd);
 	buff = malloc(sizeof(char) * 9);
 	if (read(fd, buff, 9) <= 0)
 		error_tex(data, buff, ret, fd);
@@ -123,4 +126,5 @@ void	check_line(t_data *data, char *line)
 		data->map.map_start = data->map.count_line;
 	else if (check_map_chars(line) == 0)
 		error(data, "Error\nInvalid file\n");
+
 }
