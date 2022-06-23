@@ -6,10 +6,9 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:02:45 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/23 02:28:50 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:06:35 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -55,8 +54,8 @@ typedef struct s_img
 typedef struct s_raycast
 {
 	int		x;
-	int		lineH;
-	int		lineO;
+	int		line_h;
+	int		line_o;
 	int		y_max;
 	int		y_ceil;
 	float	ty;
@@ -92,19 +91,18 @@ typedef struct s_data
 	int			turn_left;
 	int			turn_right;
 	int			ray_num;
-	double		deltaDistX;
-    double		deltaDistY;
-	double		sideDistX;
-	double		sideDistY;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		sidedist_x;
+	double		sidedist_y;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
 	int			wall;
 	t_map		map;
 	t_raycast	rc;
 }	t_data;
-
 
 int		ft_run(t_data *data);
 int		arrows_up(int keycode, t_data *data);
@@ -114,7 +112,7 @@ void	draw_player(t_data *data, int x, int y);
 void	my_img_pixel_put(t_img	*img, int x, int y, int color);
 void	start_game(t_data *data);
 void	raycast(t_data *data, double ra);
-int	    validate_cub(char *s, char *ext);
+int		validate_cub(char *s, char *ext);
 void	verify_arg(int argc);
 void	verify_map(char **argv, t_data *data);
 void	validate_map(t_data *data);
@@ -122,8 +120,7 @@ void	error_player(t_data *data);
 void	verify_wall(t_data *data);
 void	free_split(char **split);
 char	*ft_strjoin_free(char *s1, char const *s2);
-void	validate_cep(int x, int y, t_data *data);
-int		check_pixel_color(t_data *data, int x, int y);
+void	validate_nesw(int x, int y, t_data *data);
 int		exit_click(t_data *data);
 int		my_img_pixel_get(t_img *img, int x, int y);
 char	*add_tex_location(char *line, char *tex, t_data *data);
@@ -136,12 +133,12 @@ void	free_images(t_data *data);
 void	check_walls(t_data *data);
 void	make_vertical_line(t_data *data, int distance, double ix, t_img *img);
 int		matriz_len(char **split);
-void	check_diagonal_up_right(t_data *data, int y, int x);
-void	check_diagonal_up_left(t_data *data, int y, int x);
-void	check_diagonal_down_right(t_data *data, int y, int x);
-void	check_diagonal_down_left(t_data *data, int y, int x);
 double	get_distance(t_data *data, double ra);
 void	get_sidedist(t_data *data, double ra);
 void	error(t_data *data, char *s);
+void	init_map(t_data *data);
+t_img	*init_texture(t_data *data, char *file);
+void	init_game(t_data *data);
+void	error_tex(t_data *data, char *buff, char *ret, int fd);
 
 #endif

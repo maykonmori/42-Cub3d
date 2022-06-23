@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:00:21 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/22 03:25:57 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:09:09 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	check_collision(t_data *data, double ra)
 	int	map_y;
 
 	get_distance(data, ra);
-	map_x = data->px + (30 * data->stepX);
-	map_y = data->py + (30 * data->stepY);
+	map_x = data->px + (30 * data->step_x);
+	map_y = data->py + (30 * data->step_y);
 	map_x = map_x >> 6;
 	map_y = map_y >> 6;
 	if (data->map.map[map_y][(int)(data->px) >> 6] == '1' || \

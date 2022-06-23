@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/23 02:29:37 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:08:35 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_vertical_line(t_data *data, t_img *img)
 {
-	while (data->rc.y_ceil <= data->rc.lineO)
+	while (data->rc.y_ceil <= data->rc.line_o)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
@@ -22,13 +22,13 @@ void	put_vertical_line(t_data *data, t_img *img)
 			data->c_color);
 		data->rc.y_ceil++;
 	}
-	while (data->rc.lineO <= data->rc.y_max)
+	while (data->rc.line_o <= data->rc.y_max)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
-			my_img_pixel_put(data->game_img, data->rc.x++, data->rc.lineO, \
+			my_img_pixel_put(data->game_img, data->rc.x++, data->rc.line_o, \
 			my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
-		data->rc.lineO++;
+		data->rc.line_o++;
 		data->rc.ty += data->rc.ty_step;
 	}
 	while (data->rc.y_max <= 512)
@@ -46,16 +46,16 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img *img)
 	data->rc.y_ceil = 0;
 	if (distance == 0)
 		distance = 1;
-	data->rc.lineH = (TILE_SIZE * 512) / distance;
-	data->rc.ty_step = 64.0 / (float)data->rc.lineH;
+	data->rc.line_h = (TILE_SIZE * 512) / distance;
+	data->rc.ty_step = 64.0 / (float)data->rc.line_h;
 	data->rc.ty_off = 0;
-	if (data->rc.lineH > 512)
+	if (data->rc.line_h > 512)
 	{
-		data->rc.ty_off = (data->rc.lineH - 512) / 2.0;
-		data->rc.lineH = 512;
+		data->rc.ty_off = (data->rc.line_h - 512) / 2.0;
+		data->rc.line_h = 512;
 	}
-	data->rc.lineO = 256 - data->rc.lineH / 2;
-	data->rc.y_max = data->rc.lineO + data->rc.lineH;
+	data->rc.line_o = 256 - data->rc.line_h / 2;
+	data->rc.y_max = data->rc.line_o + data->rc.line_h;
 	data->rc.tx = (int)(ix / 2.0) % 32;
 	if (img == data->s_img)
 		data->rc.tx = 31 - data->rc.tx;
