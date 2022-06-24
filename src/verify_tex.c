@@ -6,7 +6,7 @@
 /*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/23 13:15:09 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/23 21:29:05 by mjose-ye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	get_rgb(t_data *data, char *line, int color)
 void	check_line(t_data *data, char *line)
 {
 	data->map.count_line++;
+	while (*line == ' ')
+		line++;
 	if (ft_strncmp("NO ", line, 3) == 0)
 		data->n_tex = add_tex_location(line, data->n_tex, data);
 	else if (ft_strncmp("SO ", line, 3) == 0)
@@ -126,5 +128,4 @@ void	check_line(t_data *data, char *line)
 		data->map.map_start = data->map.count_line;
 	else if (check_map_chars(line) == 0)
 		error(data, "Error\nInvalid file\n");
-
 }
