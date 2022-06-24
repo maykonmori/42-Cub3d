@@ -1,7 +1,7 @@
-NO ./.xpm/no_redbrick.xpm
-SO ./.xpm/so_redbrick.xpm
-EA ./.xpm/ea_redbrick.xpm
-WE ./.xpm/we_redbrick.xpm
+NO ./assets/img/bricks.xpm
+SO ./assets/img/bricks.xpm
+EA ./assets/img/bricks.xpm
+WE ./assets/img/bricks.xpm
 C 255,200,
 F 122,122,122
 
