@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:00:48 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/23 13:36:43 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/24 02:47:55 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ void	get_map(t_data *data)
 void	check_info(t_data *data)
 {
 	if (data->n_tex == NULL)
-		error(data, "Error\n Invalid TEX\n");
+		error(data, "Error\nInvalid TEX\n");
 	if (data->s_tex == NULL)
-		error(data, "Error\n Invalid TEX\n");
+		error(data, "Error\nInvalid TEX\n");
 	if (data->w_tex == NULL)
-		error(data, "Error\n Invalid TEX\n");
+		error(data, "Error\nInvalid TEX\n");
 	if (data->e_tex == NULL)
-		error(data, "Error\n Invalid TEX\n");
+		error(data, "Error\nInvalid TEX\n");
 	if (data->s_tex == NULL)
-		error(data, "Error\n Invalid TEX\n");
-	if (data->f_color == 0)
-		error(data, "Error\n Invalid RGB\n");
-	if (data->c_color == 0)
-		error(data, "Error\n Invalid RGB\n");
+		error(data, "Error\nInvalid TEX\n");
+	if (data->f_color == -1)
+		error(data, "Error\nInvalid RGB\n");
+	if (data->c_color == -1)
+		error(data, "Error\nInvalid RGB\n");
 }
 
 void	verify_map(char **argv, t_data *data)

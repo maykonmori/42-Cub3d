@@ -1,7 +1,7 @@
-NO ./assets/img/bricks.xpm
+NO ./assets/img/bricks2.xpm
 SO ./assets/img/bricks2.xpm
-WE ./assets/img/bookshelf.xpm
-EA ./assets/img/dirt.xpm
+WE ./assets/img/bricks2.xpm
+EA ./assets/img/bricks2.xpm
 
 F 120,25,80
 C 0,255,0

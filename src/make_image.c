@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:04:14 by mjose-ye          #+#    #+#             */
-/*   Updated: 2022/06/23 03:08:35 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 02:17:58 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img *img)
 	data->rc.line_o = 256 - data->rc.line_h / 2;
 	data->rc.y_max = data->rc.line_o + data->rc.line_h;
 	data->rc.tx = (int)(ix / 2.0) % 32;
-	if (img == data->s_img)
+	if (img == data->s_img || img == data->w_img)
 		data->rc.tx = 31 - data->rc.tx;
 	data->rc.ty = data->rc.ty_off * data->rc.ty_step;
 	put_vertical_line(data, img);

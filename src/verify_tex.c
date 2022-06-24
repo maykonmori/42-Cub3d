@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_tex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 02:55:17 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/23 13:15:09 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/06/24 02:48:13 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	check_rgb_line(t_data *data, char *line, char **split)
 			c++;
 	}
 	if (c != 2)
-		error(data, "Error\n Invalid RGB\n");
+		error(data, "Error\nInvalid RGB\n");
 	if (matriz_len(split) != 3)
 	{
 		free_split(split);
-		error(data, "Error\n Invalid RGB\n");
+		error(data, "Error\nInvalid RGB\n");
 	}
 }
 
@@ -63,21 +63,24 @@ char	*add_tex_location(char *line, char *tex, t_data *data)
 
 int	check_colors(t_data *data, char *line)
 {
-	int	n;
+	int		n;
+	char	*temp;
 
 	n = 0;
-	(void)data;
-	while (line[n] == ' ')
-		n++;
-	while (line[n] != '\0')
+	temp = ft_strtrim(line, " ");
+	while (temp[n] != '\0')
 	{
-		if (ft_isdigit(line[n]) == 0 && line[n] != '\n')
+		if (ft_isdigit(temp[n]) == 0 && temp[n] != '\n')
+		{
+			free (temp);
 			return (-1);
+		}
 		n++;
 	}
-	n = ft_atoi(line);
+	n = ft_atoi(temp);
+	free (temp);
 	if (n > 255 || n < 0)
-		error(data, "Error\n Invalid RGB\n");
+		error(data, "Error\nInvalid RGB\n");
 	return (n);
 }
 
@@ -91,7 +94,7 @@ int	get_rgb(t_data *data, char *line, int color)
 
 	temp = line;
 	line++;
-	if (color != 0)
+	if (color != -1)
 		error(data, "Error\nRepeated color\n");
 	while (*line == ' ')
 		line++;
@@ -103,13 +106,15 @@ int	get_rgb(t_data *data, char *line, int color)
 	b = check_colors(data, split[2]);
 	free_split(split);
 	if (r == -1 || g == -1 || b == -1)
-		error(data, "Error\n Invalid RGB\n");
+		error(data, "Error\nInvalid RGB\n");
 	return ((r * 65536) + (g * 256) + b);
 }
 
 void	check_line(t_data *data, char *line)
 {
 	data->map.count_line++;
+	while (*line == ' ')
+		line++;
 	if (ft_strncmp("NO ", line, 3) == 0)
 		data->n_tex = add_tex_location(line, data->n_tex, data);
 	else if (ft_strncmp("SO ", line, 3) == 0)
@@ -126,5 +131,4 @@ void	check_line(t_data *data, char *line)
 		data->map.map_start = data->map.count_line;
 	else if (check_map_chars(line) == 0)
 		error(data, "Error\nInvalid file\n");
-
 }

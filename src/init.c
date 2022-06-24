@@ -6,7 +6,7 @@
 /*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 02:43:21 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/23 02:46:12 by rkenji-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 02:47:42 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_map(t_data *data)
 	data->s_tex = NULL;
 	data->w_tex = NULL;
 	data->e_tex = NULL;
-	data->c_color = 0;
-	data->f_color = 0;
+	data->c_color = -1;
+	data->f_color = -1;
 }
 
 void	init_game(t_data *data)
