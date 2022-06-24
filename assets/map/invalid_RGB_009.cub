@@ -1,10 +1,9 @@
- EA ./assets/img/bricks.xpm
-NO ./assets/img/bricks.xpm
-SO ./assets/img/bricks.xpm
-WE ./assets/img/bricks.xpm
-C 255,200,160
+NO assets/images/no_redbrick.xpm
+SO assets/images/so_redbrick.xpm
+EA assets/images/ea_redbrick.xpm
+WE assets/images/we_redbrick.xpm
+C 255,200,+160
 F 122,122,122
-
 
 11111111111111111
 10000000000000001
