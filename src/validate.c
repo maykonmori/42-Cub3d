@@ -23,11 +23,6 @@ void	validate_map(t_data *data)
 		x = 0;
 		while (data->map.map[y][x])
 		{
-			if (!(ft_strchr("01NESW ", data->map.map[y][x])))
-			{
-				free_split(data->map.map);
-				error(data, "Invalid char");
-			}
 			validate_nesw(x, y, data);
 			x++;
 		}

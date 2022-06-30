@@ -88,9 +88,9 @@ void	verify_map(char **argv, t_data *data)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		error(data, "Erro\nfile was not opened\n");
+		error(data, "Error\nfile was not opened\n");
 	if (validate_cub(argv[1], ".cub") == 0)
-		error(data, "map is not .cub");
+		error(data, "Error\nmap is not .cub");
 	init_map(data);
 	n = -1;
 	while (1)
