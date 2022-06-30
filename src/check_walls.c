@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjose-ye <mjose-ye@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rkenji-s <rkenji-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 03:31:55 by rkenji-s          #+#    #+#             */
-/*   Updated: 2022/06/22 21:16:03 by mjose-ye         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:23:32 by rkenji-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_diagonal_2(t_data *data, int y, int x)
 		y++;
 	}
 	if (x < 0 || (data->map.map[y] && data->map.map[y][x] != '1'))
-		error(data, "Error\nMapa nao rodeado por 1\n");
+		error(data, "Error\nMap not surrounded by walls\n");
 	while (temp_y >= 0 && temp_x < data->map.x_size \
 	&& data->map.map[temp_y][temp_x] != ' ')
 	{
@@ -36,7 +36,7 @@ void	check_diagonal_2(t_data *data, int y, int x)
 		temp_y--;
 		temp_x++;
 	}
-	error(data, "Error\nMapa nao rodeado por 1\n");
+	error(data, "Error\nMap not surrounded by walls\n");
 }
 
 void	check_diagonal_1(t_data *data, int y, int x)
@@ -55,7 +55,7 @@ void	check_diagonal_1(t_data *data, int y, int x)
 		y++;
 	}
 	if (data->map.map[y] && data->map.map[y][x] != '1')
-		error(data, "Error\nMapa nao rodeado por 1\n");
+		error(data, "Error\nMap not surrounded by walls\n");
 	while (temp_y >= 0 && temp_x >= 0 && data->map.map[temp_y][temp_x] != ' ')
 	{
 		if (data->map.map[temp_y][temp_x] == '1')
@@ -63,7 +63,7 @@ void	check_diagonal_1(t_data *data, int y, int x)
 		temp_y--;
 		temp_x--;
 	}
-	error(data, "Error\nMapa nao rodeado por 1\n");
+	error(data, "Error\nMap not surrounded by walls\n");
 }
 
 void	check_horizontal(t_data *data, int y, int x)
@@ -80,14 +80,14 @@ void	check_horizontal(t_data *data, int y, int x)
 		x++;
 	}
 	if (data->map.map[y][x] != '1')
-		error(data, "Error\nMapa nao rodeado por 1\n");
+		error(data, "Error\nMap not surrounded by walls\n");
 	while (temp_x >= 0 && data->map.map[temp_y][temp_x] != ' ')
 	{
 		if (data->map.map[temp_y][temp_x] == '1')
 			return ;
 		temp_x--;
 	}
-	error(data, "Error\nMapa nao rodeado por 1\n");
+	error(data, "Error\nMap not surrounded by walls\n");
 }
 
 void	check_vertical(t_data *data, int y, int x)
@@ -104,14 +104,14 @@ void	check_vertical(t_data *data, int y, int x)
 		y--;
 	}
 	if (y < 0 || (data->map.map[y] && data->map.map[y][x] != '1'))
-		error(data, "Error\nMapa nao rodeado por 1\n");
+		error(data, "Error\nMap not surrounded by walls\n");
 	while (temp_y < data->map.y_size && data->map.map[temp_y][temp_x] != ' ')
 	{
 		if (data->map.map[temp_y][temp_x] == '1')
 			return ;
 		temp_y++;
 	}
-	error(data, "Error\nMapa nao rodeado por 1\n");
+	error(data, "Error\nMap not surrounded by walls\n");
 }
 
 void	check_walls(t_data *data)
